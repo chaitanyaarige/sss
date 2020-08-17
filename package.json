@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "bootstrap": "^4.5.2",
+    "bootstrap-icons": "^1.0.0-alpha5",
     "bootstrap-vue": "^2.16.0",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0",
@@ -17,6 +18,8 @@
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-plugin-vuex": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^9.0.3",
     "vue-template-compiler": "^2.6.11"
   }
 }
