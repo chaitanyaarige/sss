@@ -55,7 +55,7 @@ export default {
 <style lang="scss" >
 .Navbar {
   &__bgColor {
-    visibility: hidden;
+    // visibility: hidden;
     background-color: #eeebd9 !important;
   }
 

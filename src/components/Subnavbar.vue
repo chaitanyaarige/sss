@@ -78,7 +78,7 @@
 
   &__subcontainer {
     display: flex;
-    visibility: hidden;
+    // visibility: hidden;
   }
 
   &__buttonSize {
