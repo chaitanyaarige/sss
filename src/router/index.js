@@ -18,6 +18,13 @@ Vue.use(VueRouter)
     }
   },  
   {
+    path: '/stockin',
+    name: 'stockin',
+    component: function () {
+      return import('../views/stockin.vue')
+    }
+  },  
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

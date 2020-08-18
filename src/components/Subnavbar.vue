@@ -41,7 +41,7 @@
                 @click="hide"
               >Cash Invoice</b-list-group-item>
               <b-list-group-item to='about'>Credit Invoice</b-list-group-item>
-              <b-list-group-item href="#">Stock IN</b-list-group-item>
+              <b-list-group-item href="stockin">Stock IN</b-list-group-item>
               <b-list-group-item href="#">SUB Books</b-list-group-item>
               <b-list-group-item href="#">SUB Govt. Books</b-list-group-item>
               <b-list-group-item href="#">SUB Stationery</b-list-group-item>
@@ -78,6 +78,7 @@
 
   &__subcontainer {
     display: flex;
+    visibility: hidden;
   }
 
   &__buttonSize {

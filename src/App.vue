@@ -3,7 +3,9 @@
     <div id="nav">
       <Navbar/>
     </div>
-    <router-view/>
+    <div class="max-widths">
+      <router-view class="bg-whites"/>
+    </div>
   </div>
 </template>
 
@@ -22,6 +24,18 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  max-width: 1200px;
+  margin: auto;
+  background: lightcyan;
+}
+
+.max-widths {
+  max-width: 1170px;
+  margin: auto;
+  padding-bottom: 20px;
+}
+
+.bg-whites {
+  background: white;
 }
 </style>
