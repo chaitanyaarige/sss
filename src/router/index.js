@@ -11,6 +11,13 @@ Vue.use(VueRouter)
     component: Home
   },
   {
+    path: '/publishers',
+    name: 'publishers',
+    component: function () {
+      return import('../views/publishers.vue')
+    }
+  },  
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting

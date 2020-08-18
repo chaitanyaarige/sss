@@ -1,10 +1,20 @@
 <template>
   <div id="app">
     <div id="nav">
+      <Navbar/>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+import Navbar from '@/components/Navbar.vue'
+export default {
+  components: {
+    Navbar
+  }
+}
+</script>
 
 <style>
 #app {
@@ -15,5 +25,3 @@
   color: #2c3e50;
 }
 </style>
-
-// background: linear-gradient(0deg,#0098f0,#00f2c3);
