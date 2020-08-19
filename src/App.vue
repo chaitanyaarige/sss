@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <Navbar/>
+      <Topbar/>
     </div>
     <div class="max-widths">
       <router-view class="bg-whites"/>
@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue'
+import Topbar from '@/components/Topbar.vue'
 export default {
   components: {
-    Navbar
+    Topbar
   }
 }
 </script>
@@ -24,7 +24,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  max-width: 1200px;
+  max-width: 1366px;
   font-size: 15px;
   margin: auto;
   background: lightcyan;

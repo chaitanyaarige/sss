@@ -1,77 +1,112 @@
 <template>
-  <div>
-    <b-navbar class="Navbar__bgColor" toggleable="lg">
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+  <div class="Navbar__shorts">
+    <div class="Navbar__smallBoxes">
+      <svg
+        width="25px"
+        height="25px"
+        viewBox="0 0 16 16"
+        class="bi bi-house-door-fill"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"
+        />
+        <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+      </svg>
+      <span @mouseover="showNavbar(true)" @mouseout="showNavbar(false)" class="pr-2">Dashboard</span>
 
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-          <img class="Navbar__logo" src="../assets/logo.png" alt />
-        </b-navbar-nav>
-
-        <div>
-          <div class="Navbar__phone-gst">
-            <div class="Navbar__gst">GST: 36BDEPK3258C1ZT </div>
-            <div>Phone: 9666542244</div>
+      <div v-if="showFirst" class="Navbar__container">
+        <b-card>
+          <div class="Navbar__card">
+            hjkljhj
+            jhgjk
           </div>
-          <div class="Navbar__MainTitle">Sri Srinivasa Stationery And General Stores</div>
-          <div>Shop No: D5, R.T.C. Complex, Main Road, Zaheerabad</div>
-        </div>
+        </b-card>
+      </div>
+    </div>
 
-        <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
-          <svg
-            width="30px"
-            height="30px"
-            viewBox="0 0 16 16"
-            class="bi bi-power"
-            fill="currentColor"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M5.578 4.437a5 5 0 1 0 4.922.044l.5-.866a6 6 0 1 1-5.908-.053l.486.875z"
-            />
-            <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z" />
-          </svg>
-          <span>Log out</span>
-        </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
-  <Subnavbar/>
+    <div @mouseover="showNavbar" class="Navbar__smallBoxes">
+      <svg
+        width="25px"
+        height="25px"
+        viewBox="0 0 16 16"
+        class="bi bi-house-door-fill"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"
+        />
+        <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+      </svg>
+      <span class="pr-2">Dashboard</span>
+    </div>
+
+    <div class="Navbar__smallBoxes">
+      <svg
+        width="25px"
+        height="25px"
+        viewBox="0 0 16 16"
+        class="bi bi-house-door-fill"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"
+        />
+        <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+      </svg>
+      <span class="pr-2">Dashboard</span>
+    </div>
   </div>
 </template>
 
 <script>
-import Subnavbar from '@/components/Subnavbar.vue'
 export default {
-  name: 'navbar',
+  data() {
+    return {
+      showFirst: false
+    };
+  },
 
-  components: {
-    Subnavbar
-  }
-}
+  methods: {
+    showNavbar(data) {
+      setTimeout(() => {
+        this.showFirst = data
+      }, 300);
+    },
+  },
+};
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped>
 .Navbar {
-  &__bgColor {
-    // visibility: hidden;
-    background-color: #eeebd9 !important;
-  }
-
-  &__phone-gst {
-    font-weight: 600;
+  &__shorts {
+    min-height: 60px;
+    padding: 10px 100px;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
+    align-items: center;
   }
 
-  &__logo {
-    width: 200px;
+  &__smallBoxes {
+    margin: auto;
   }
 
-  &__MainTitle {
-    font-size: 40px;
+  &__subcontainer {
+    display: flex;
+    // visibility: hidden;
+  }
+
+  &__container {
+    position: absolute;
+    z-index: 999;
+  }
+
+  &__buttonSize {
+    width: 150px;
+    background: linear-gradient(to right, #0098f0, #00f2c3) !important;
   }
 }
-
 </style>
