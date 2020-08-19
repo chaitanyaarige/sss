@@ -9,7 +9,7 @@
 
       <div>
         <div class="Topbar__phone-gst">
-          <div>GST: 36BDEPK3258C1ZT</div>
+          <div class="Topbar__gst">GST: 36BDEPK3258C1ZT</div>
           <div>Phone: 9666542244</div>
         </div>
         <div class="Topbar__MainTitle">Sri Srinivasa Stationery And General Stores</div>
@@ -17,7 +17,7 @@
       </div>
 
       <!-- Right aligned nav items -->
-      <b-navbar-nav class="ml-auto">
+      <b-navbar-nav v-b-tooltip.hover title="Log out" class="ml-auto">
         <svg
           width="30px"
           height="30px"
@@ -32,7 +32,6 @@
           />
           <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z" />
         </svg>
-        <span class="Topbar__logout">Log out</span>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
@@ -45,5 +44,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "Topbar";
+@import "Topbar";
 </style>
