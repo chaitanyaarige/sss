@@ -13,6 +13,7 @@ Vue.use(VueRouter)
   {
     path: '/creditbill',
     name: 'creditbill',
+    meta: { title: 'SSS Credit Bill'},
     component: function () {
       return import('../views/creditbill.vue')
     }
@@ -20,6 +21,7 @@ Vue.use(VueRouter)
   {
     path: '/cashbill',
     name: 'cashbill',
+    meta: { title: 'SSS Cash Bill'},
     component: function () {
       return import('../views/cashbill.vue')
     }
@@ -39,10 +41,10 @@ Vue.use(VueRouter)
     }
   }, 
   {
-    path: '/stockin/stationary',
+    path: '/stockin/stationery',
     name: 'stockin',
     component: function () {
-      return import('../components/stationary.vue')
+      return import('../components/stationery.vue')
     }
   },  
   {
@@ -69,11 +71,8 @@ Vue.use(VueRouter)
   {
     path: '/audit',
     name: 'Audit',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
     component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/Audit.vue')
+      return import('../views/Audit.vue')
     }
   }
 ]

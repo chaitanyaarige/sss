@@ -1,5 +1,5 @@
 <template>
     <div>
-        This-is-stationary ADD
+        This-is-stationery ADD
     </div>
 </template>

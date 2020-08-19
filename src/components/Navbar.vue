@@ -6,7 +6,7 @@
         height="25px"
         viewBox="0 0 16 16"
         class="bi bi-house-door-fill"
-        fill="currentColor"
+        :fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -23,7 +23,7 @@
         height="25px"
         viewBox="0 0 16 16"
         class="bi bi-house-door-fill"
-        fill="currentColor"
+        :fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -40,7 +40,7 @@
         height="25px"
         viewBox="0 0 16 16"
         class="bi bi-house-door-fill"
-        fill="currentColor"
+        :fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -57,7 +57,7 @@
         height="25px"
         viewBox="0 0 16 16"
         class="bi bi-house-door-fill"
-        fill="currentColor"
+        :fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -70,7 +70,7 @@
         <b-card>
           <div @click.stop="routemeto('stockin')" class="Navbar__card">Books</div>
           <div @click.prevent="routemeto('stockin/govtbooks')">Govt Books</div>
-          <div @click.prevent="routemeto('stockin/stationary')">Stationery</div>
+          <div @click.prevent="routemeto('stockin/stationery')">Stationery</div>
         </b-card>
       </div>
     </div>
@@ -81,7 +81,7 @@
         height="25px"
         viewBox="0 0 16 16"
         class="bi bi-house-door-fill"
-        fill="currentColor"
+        :fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -104,7 +104,7 @@
         height="25px"
         viewBox="0 0 16 16"
         class="bi bi-house-door-fill"
-        fill="currentColor"
+        :fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -121,7 +121,7 @@
         height="25px"
         viewBox="0 0 16 16"
         class="bi bi-house-door-fill"
-        fill="currentColor"
+        :fill="currentColor"
         xmlns="http://www.w3.org/2000/svg"
       >
         <path
@@ -139,7 +139,8 @@ export default {
   data() {
     return {
       showStock: false,
-      showBuyer: false
+      showBuyer: false,
+      currentColor: 'white'
     };
   },
 
@@ -169,9 +170,11 @@ export default {
     min-height: 60px;
     max-width: 1170px;
     margin: auto;
-    padding: 10px 100px;
+    padding: 10px 20px;
     display: flex;
     background-color: #d7fff8;
+    background: rgb(163,135,181);
+    background: linear-gradient(90deg, #a387b5c7 0%, #f58d8d 50%, #7efbe5 100%); 
     // justify-content: space-between;
     align-items: center;
   }

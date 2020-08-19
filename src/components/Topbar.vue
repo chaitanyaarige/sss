@@ -49,6 +49,7 @@ export default {
   &__bgColor {
     // visibility: hidden;
     background-color: #ffec89;
+    background: radial-gradient(circle, rgba(255,236,137,1) 0%, rgba(192,192,192,1) 100%);
   }
 
   &__phone-gst {

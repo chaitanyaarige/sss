@@ -4,7 +4,7 @@
     <div class='ml-2' style="display:flex">
       <div class="m-4 Publisher__underline-active">Add Books</div>
       <div class="m-4 Publisher__underline">Add Govt Books</div>
-      <div class="m-4 Publisher__underline">Add Stationary</div>
+      <div class="m-4 Publisher__underline">Add Stationery</div>
     </div>
 
 
@@ -19,7 +19,7 @@
         <b-button variant="outline-primary">Button</b-button>
       <div class="m-4 Publisher__underline-active">Add Books</div>
       <div class="m-4 Publisher__underline">Add Govt Books</div>
-      <div class="m-4 Publisher__underline">Add Stationary</div>
+      <div class="m-4 Publisher__underline">Add Stationery</div>
     </div>
 
     <b-container>
