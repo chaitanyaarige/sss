@@ -17,7 +17,7 @@
       <span class="pr-2">Dashboard</span>
     </div>
 
-    <div @click="routemeto('creditbill')" class="Navbar__smallBoxes">
+    <div @click.stop="routemeto('creditbill')" class="Navbar__smallBoxes">
       <svg
         width="25px"
         height="25px"
@@ -31,16 +31,27 @@
         />
         <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
       </svg>
-      <span class="pr-2">Invoice</span>
-      <div v-if="showFirst" class="Navbar__container">
-        <b-card>
-          <div to="creditbill" class="Navbar__card">Credit Invoice</div>
-          <div>Cash Invoice</div>
-        </b-card>
-      </div>
+      <span class="pr-2">Credit Invoice</span>
     </div>
 
-    <div @mouseover="onOver" @mouseleave="onLeave" class="Navbar__smallBoxes">
+    <div @click.prevent="routemeto('cashbbill')" class="Navbar__smallBoxes">
+      <svg
+        width="25px"
+        height="25px"
+        viewBox="0 0 16 16"
+        class="bi bi-house-door-fill"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"
+        />
+        <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+      </svg>
+      <span class="pr-2">Cash Invoice</span>
+    </div>
+
+    <div @mouseover="onOver('stock')" @mouseleave="onLeave" class="Navbar__smallBoxes">
       <svg
         width="25px"
         height="25px"
@@ -55,7 +66,7 @@
         <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
       </svg>
       <span class="pr-2">Stock In</span>
-      <div v-if="showFirst" class="Navbar__container">
+      <div v-if="showStock" class="Navbar__cardcontainer">
         <b-card>
           <div @click="routemeto('stockin')" class="Navbar__card">Books</div>
           <div @click="routemeto('stockin/stockin')">Govt Books</div>
@@ -64,7 +75,7 @@
       </div>
     </div>
 
-    <div @mouseover="onOver" @mouseleave="onLeave" class="Navbar__smallBoxes">
+    <div @mouseover="onOver('buyer')" @mouseleave="onLeave" class="Navbar__smallBoxes">
       <svg
         width="25px"
         height="25px"
@@ -79,7 +90,7 @@
         <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
       </svg>
       <span class="pr-2">Buyer List</span>
-      <div v-if="showFirst" class="Navbar__container">
+      <div v-if="showBuyer" class="Navbar__cardcontainer">
         <b-card>
           <div @click="routemeto('schools')" class="Navbar__card">Schools</div>
           <div @click="routemeto('companies')">Companies</div>
@@ -127,7 +138,8 @@
 export default {
   data() {
     return {
-      showFirst: false,
+      showStock: false,
+      showBuyer: false
     };
   },
 
@@ -135,11 +147,17 @@ export default {
     routemeto(data) {
       this.$router.push({ path: `/${data}`})
     },  
-    onOver() {
-      this.showFirst = true;
+    onOver(data) {
+      switch (data) {
+        case ('buyer'):
+          return this.showBuyer = true
+        case ('stock'):
+          return this.showStock = true
+      }
     },
     onLeave() {
-      this.showFirst = false;
+      this.showStock = false;
+      this.showBuyer = false
     },
   },
 };
@@ -168,7 +186,9 @@ export default {
     // visibility: hidden;
   }
 
-  &__container {
+  &__cardcontainer {
+    margin-left: -50px;
+    min-width: 200px;
     position: absolute;
     z-index: 999;
   }
