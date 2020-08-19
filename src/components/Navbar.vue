@@ -57,7 +57,7 @@
       <span class="pl-2">Stock In</span>
       <div v-if="showStock" class="Navbar__cardcontainer">
         <b-card>
-          <div @click.stop="routemeto('stockin')" class="Navbar__card">Books</div>
+          <div @click.prevent="routemeto('stockin')" class="Navbar__card">Books</div>
           <div @click.prevent="routemeto('stockin/govtbooks')" class="Navbar__card">Govt Books</div>
           <div @click.prevent="routemeto('stockin/stationery')" class="Navbar__card">Stationery</div>
           <div @click.prevent="routemeto('stockin/registers')" class="Navbar__card">Printed Registers</div>
@@ -83,7 +83,7 @@
       <div v-if="showBuyer" class="Navbar__cardcontainer">
         <b-card>
           <div @click.prevent="routemeto('schools')" class="Navbar__card">Schools</div>
-          <div @click.prevent="routemeto('companies')">Companies</div>
+          <div @click.prevent="routemeto('companies')" class="Navbar__card">Companies</div>
         </b-card>
       </div>
     </div>

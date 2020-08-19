@@ -17,7 +17,7 @@
       </div>
 
       <!-- Right aligned nav items -->
-      <b-navbar-nav v-b-tooltip.hover title="Log out" class="ml-auto">
+      <b-navbar-nav v-b-tooltip.hover title="Log out" style="cursor: pointer" class="ml-auto">
         <svg
           width="30px"
           height="30px"
