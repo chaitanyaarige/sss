@@ -56,7 +56,7 @@ export default {
 .Menu {
   &__bgColor {
     // visibility: hidden;
-    background-color: #eeebd9 !important;
+    background-color:#ffec89;
   }
 
   &__phone-gst {

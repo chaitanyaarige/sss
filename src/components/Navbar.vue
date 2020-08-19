@@ -1,6 +1,6 @@
 <template>
   <div class="Navbar__shorts">
-    <div class="Navbar__smallBoxes">
+    <div to="/" class="Navbar__smallBoxes">
       <svg
         width="25px"
         height="25px"
@@ -43,7 +43,7 @@
       <span class="pr-2">Invoice</span>
       <div v-if="showFirst" class="Navbar__container">
         <b-card>
-          <div class="Navbar__card">Credit Invoice</div>
+          <div to="creditbill" class="Navbar__card">Credit Invoice</div>
           <div>Cash Invoice</div>
         </b-card>
       </div>
@@ -113,7 +113,7 @@
       </div>
     </div>
 
-    <div class="Navbar__smallBoxes">
+    <div to="publishers" class="Navbar__smallBoxes">
       <svg
         width="25px"
         height="25px"
@@ -130,7 +130,7 @@
       <span class="pr-2">Publishers List</span>
     </div>
 
-    <div class="Navbar__smallBoxes">
+    <div  to="about" class="Navbar__smallBoxes">
       <svg
         width="25px"
         height="25px"
@@ -158,12 +158,6 @@ export default {
   },
 
   methods: {
-    // showNavbar(data) {
-    //   setTimeout(() => {
-    //     this.showFirst = data;
-    //   }, 300);
-    // },
-
     onOver() {
       this.showFirst = true;
     },
@@ -178,14 +172,18 @@ export default {
 .Navbar {
   &__shorts {
     min-height: 60px;
+    max-width: 1170px;
+    margin: auto;
     padding: 10px 100px;
     display: flex;
+    background-color: #d7fff8;
     // justify-content: space-between;
     align-items: center;
   }
 
   &__smallBoxes {
     margin: auto;
+    cursor: pointer;
   }
 
   &__subcontainer {

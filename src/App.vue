@@ -27,7 +27,7 @@ export default {
   max-width: 1366px;
   font-size: 15px;
   margin: auto;
-  background: lightcyan;
+  background: #eeebd9;
 }
 
 .max-widths {

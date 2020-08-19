@@ -18,6 +18,13 @@ Vue.use(VueRouter)
     }
   },  
   {
+    path: '/creditbill',
+    name: 'creditbill',
+    component: function () {
+      return import('../views/creditbill.vue')
+    }
+  },   
+  {
     path: '/stockin',
     name: 'stockin',
     component: function () {
