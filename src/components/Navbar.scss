@@ -1,0 +1,43 @@
+.Navbar {
+    &__shorts {
+      font-family: 'Raleway', sans-serif;
+      font-weight: 600;
+      min-height: 60px;
+      max-width: 1170px;
+      margin: auto;
+      padding: 10px 20px;
+      display: flex;
+      background-color: #d7fff8;
+      background: rgb(163,135,181);
+      background: linear-gradient(90deg, #a387b5c7 0%, #f58d8d 50%, #7efbe5 100%); 
+      // justify-content: space-between;
+      align-items: center;
+    }
+  
+    &__smallBoxes {
+      margin: auto;
+      cursor: pointer;
+    }
+  
+    &__subcontainer {
+      display: flex;
+      // visibility: hidden;
+    }
+
+    &__rupee {
+      color: white;
+      font-size: 25px;
+    }
+  
+    &__cardcontainer {
+      margin-left: -50px;
+      min-width: 200px;
+      position: absolute;
+      z-index: 999;
+    }
+  
+    &__buttonSize {
+      width: 150px;
+      background: linear-gradient(to right, #0098f0, #00f2c3) !important;
+    }
+  }

@@ -1,19 +1,19 @@
 <template>
-  <b-navbar class="Menu__bgColor" toggleable="lg">
+  <b-navbar class="Topbar__bgColor" toggleable="lg">
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
       <b-navbar-nav>
-        <img class="Menu__logo" src="../assets/logo.png" alt />
+        <img class="Topbar__logo" src="../assets/logo.png" alt />
       </b-navbar-nav>
 
       <div>
-        <div class="Menu__phone-gst">
-          <div class="Menu__gst">GST: 36BDEPK3258C1ZT</div>
+        <div class="Topbar__phone-gst">
+          <div>GST: 36BDEPK3258C1ZT</div>
           <div>Phone: 9666542244</div>
         </div>
-        <div class="Menu__MainTitle">Sri Srinivasa Stationery And General Stores</div>
-        <div>Shop No: D5, R.T.C. Complex, Main Road, Zaheerabad</div>
+        <div class="Topbar__MainTitle">Sri Srinivasa Stationery And General Stores</div>
+        <div class="Topbar__address">Shop No: D5, R.T.C. Complex, Main Road, Zaheerabad</div>
       </div>
 
       <!-- Right aligned nav items -->
@@ -44,26 +44,6 @@ export default {
 };
 </script>
 
-<style lang="scss" >
-.Menu {
-  &__bgColor {
-    // visibility: hidden;
-    background-color: #ffec89;
-    background: radial-gradient(circle, rgba(255,236,137,1) 0%, rgba(192,192,192,1) 100%);
-  }
-
-  &__phone-gst {
-    font-weight: 600;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  &__logo {
-    width: 200px;
-  }
-
-  &__MainTitle {
-    font-size: 40px;
-  }
-}
+<style lang="scss">
+  @import "Topbar";
 </style>
