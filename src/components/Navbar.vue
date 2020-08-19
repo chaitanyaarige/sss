@@ -14,7 +14,7 @@
         />
         <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
       </svg>
-      <span class="pr-2">Dashboard</span>
+      <span class="pl-2">Dashboard</span>
     </div>
 
     <div @click.stop="routemeto('creditbill')" class="Navbar__smallBoxes">
@@ -31,7 +31,7 @@
         />
         <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
       </svg>
-      <span class="pr-2">Credit Invoice</span>
+      <span class="pl-2">Credit Invoice</span>
     </div>
 
     <div @click.prevent="routemeto('cashbill')" class="Navbar__smallBoxes">
@@ -48,7 +48,7 @@
         />
         <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
       </svg>
-      <span class="pr-2">Cash Invoice</span>
+      <span class="pl-2">Cash Invoice</span>
     </div>
 
     <div @mouseover="onOver('stock')" @mouseleave="onLeave" class="Navbar__smallBoxes">
@@ -65,7 +65,7 @@
         />
         <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
       </svg>
-      <span class="pr-2">Stock In</span>
+      <span class="pl-2">Stock In</span>
       <div v-if="showStock" class="Navbar__cardcontainer">
         <b-card>
           <div @click.stop="routemeto('stockin')" class="Navbar__card">Books</div>
@@ -89,7 +89,7 @@
         />
         <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
       </svg>
-      <span class="pr-2">Buyer List</span>
+      <span class="pl-2">Buyer List</span>
       <div v-if="showBuyer" class="Navbar__cardcontainer">
         <b-card>
           <div @click.prevent="routemeto('schools')" class="Navbar__card">Schools</div>
@@ -112,7 +112,7 @@
         />
         <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
       </svg>
-      <span class="pr-2">Publishers List</span>
+      <span class="pl-2">Publishers List</span>
     </div>
 
     <div @click.prevent="routemeto('audit')" class="Navbar__smallBoxes">
@@ -129,7 +129,7 @@
         />
         <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
       </svg>
-      <span class="pr-2">Audit</span>
+      <span class="pl-2">Audit</span>
     </div>
   </div>
 </template>
@@ -167,6 +167,8 @@ export default {
 <style lang="scss" scoped>
 .Navbar {
   &__shorts {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 600;
     min-height: 60px;
     max-width: 1170px;
     margin: auto;
