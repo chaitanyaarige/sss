@@ -32,7 +32,7 @@
           />
           <path fill-rule="evenodd" d="M7.5 8V1h1v7h-1z" />
         </svg>
-        <span>Log out</span>
+        <span class="Topbar__logout">Log out</span>
       </b-navbar-nav>
     </b-collapse>
   </b-navbar>
