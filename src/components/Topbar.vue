@@ -37,18 +37,12 @@
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
-  <Navbar/>
   </div>
 </template>
 
 <script>
-import Navbar from '@/components/Navbar.vue'
 export default {
-  name: 'navbar',
-
-  components: {
-    Navbar
-  }
+  name: 'topbar',
 }
 </script>
 

@@ -2,6 +2,7 @@
   <div id="app">
     <div id="nav">
       <Topbar/>
+      <Navbar/>
     </div>
     <div class="max-widths">
       <router-view class="bg-whites"/>
@@ -11,8 +12,11 @@
 
 <script>
 import Topbar from '@/components/Topbar.vue'
+import Navbar from '@/components/Navbar.vue'
+
 export default {
   components: {
+    Navbar,
     Topbar
   }
 }
