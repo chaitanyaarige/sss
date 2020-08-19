@@ -13,7 +13,7 @@ Vue.use(VueRouter)
   {
     path: '/creditbill',
     name: 'creditbill',
-    meta: { title: 'SSS Credit Bill'},
+    // meta: { title: 'SSS Credit Bill'},
     component: function () {
       return import('../views/creditbill.vue')
     }
@@ -21,7 +21,7 @@ Vue.use(VueRouter)
   {
     path: '/cashbill',
     name: 'cashbill',
-    meta: { title: 'SSS Cash Bill'},
+    // meta: { title: 'SSS Cash Bill'},
     component: function () {
       return import('../views/cashbill.vue')
     }
