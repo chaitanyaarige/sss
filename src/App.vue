@@ -1,25 +1,23 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <Topbar/>
-      <Navbar/>
-    </div>
+    <Topbar />
+    <Navbar />
     <div class="max-widths">
-      <router-view class="bg-whites"/>
+      <router-view class="bg-whites" />
     </div>
   </div>
 </template>
 
 <script>
-import Topbar from '@/components/Topbar.vue'
-import Navbar from '@/components/Navbar.vue'
+import Topbar from "@/components/Topbar.vue";
+import Navbar from "@/components/Navbar.vue";
 
 export default {
   components: {
     Navbar,
-    Topbar
-  }
-}
+    Topbar,
+  },
+};
 </script>
 
 <style>
@@ -42,5 +40,6 @@ export default {
 
 .bg-whites {
   background: white;
+  min-height: 500px;
 }
 </style>

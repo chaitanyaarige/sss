@@ -1,6 +1,6 @@
 <template>
   <div class="Navbar__shorts">
-    <div @click.stop="routemeto('home')" class="Navbar__smallBoxes">
+    <div @click.stop="routemeto('/')" class="Navbar__smallBoxes">
       <svg
         width="25px"
         height="25px"
