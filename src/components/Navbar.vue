@@ -1,6 +1,6 @@
 <template>
   <div class="Navbar__shorts">
-    <div @click="routemeto('home')" class="Navbar__smallBoxes">
+    <div @click.stop="routemeto('home')" class="Navbar__smallBoxes">
       <svg
         width="25px"
         height="25px"
@@ -68,9 +68,9 @@
       <span class="pr-2">Stock In</span>
       <div v-if="showStock" class="Navbar__cardcontainer">
         <b-card>
-          <div @click="routemeto('stockin')" class="Navbar__card">Books</div>
-          <div @click="routemeto('stockin/stockin')">Govt Books</div>
-          <div @click="routemeto('stockin/stationary')">Stationery</div>
+          <div @click.stop="routemeto('stockin')" class="Navbar__card">Books</div>
+          <div @click.prevent="routemeto('stockin/stockin')">Govt Books</div>
+          <div @click.prevent="routemeto('stockin/stationary')">Stationery</div>
         </b-card>
       </div>
     </div>
@@ -92,13 +92,13 @@
       <span class="pr-2">Buyer List</span>
       <div v-if="showBuyer" class="Navbar__cardcontainer">
         <b-card>
-          <div @click="routemeto('schools')" class="Navbar__card">Schools</div>
-          <div @click="routemeto('companies')">Companies</div>
+          <div @click.prevent="routemeto('schools')" class="Navbar__card">Schools</div>
+          <div @click.prevent="routemeto('companies')">Companies</div>
         </b-card>
       </div>
     </div>
 
-    <div @click="routemeto('publishers')" class="Navbar__smallBoxes">
+    <div @click.prevent="routemeto('publishers')" class="Navbar__smallBoxes">
       <svg
         width="25px"
         height="25px"
@@ -115,7 +115,7 @@
       <span class="pr-2">Publishers List</span>
     </div>
 
-    <div @click="routemeto('about')" class="Navbar__smallBoxes">
+    <div @click.prevent="routemeto('audit')" class="Navbar__smallBoxes">
       <svg
         width="25px"
         height="25px"
