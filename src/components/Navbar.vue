@@ -1,6 +1,6 @@
 <template>
   <div class="Navbar__shorts">
-    <div @click.stop="routemeto('/')" class="Navbar__smallBoxes">
+    <div @click.stop="routemeto('')" class="Navbar__smallBoxes">
       <svg
         width="25px"
         height="25px"
@@ -34,7 +34,7 @@
       <span class="pr-2">Credit Invoice</span>
     </div>
 
-    <div @click.prevent="routemeto('cashbbill')" class="Navbar__smallBoxes">
+    <div @click.prevent="routemeto('cashbill')" class="Navbar__smallBoxes">
       <svg
         width="25px"
         height="25px"
@@ -69,7 +69,7 @@
       <div v-if="showStock" class="Navbar__cardcontainer">
         <b-card>
           <div @click.stop="routemeto('stockin')" class="Navbar__card">Books</div>
-          <div @click.prevent="routemeto('stockin/stockin')">Govt Books</div>
+          <div @click.prevent="routemeto('stockin/govtbooks')">Govt Books</div>
           <div @click.prevent="routemeto('stockin/stationary')">Stationery</div>
         </b-card>
       </div>
