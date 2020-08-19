@@ -14,19 +14,19 @@
         />
         <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
       </svg>
-      <span @mouseover="showNavbar(true)" @mouseout="showNavbar(false)" class="pr-2">Dashboard</span>
-
-      <div v-if="showFirst" class="Navbar__container">
+      <span class="pr-2">Dashboard</span>
+      <!-- 
+      <div class="Navbar__container">
         <b-card>
           <div class="Navbar__card">
             hjkljhj
             jhgjk
           </div>
         </b-card>
-      </div>
+      </div>-->
     </div>
 
-    <div @mouseover="showNavbar" class="Navbar__smallBoxes">
+    <div @mouseover="onOver" @mouseleave="onLeave" class="Navbar__smallBoxes">
       <svg
         width="25px"
         height="25px"
@@ -40,7 +40,77 @@
         />
         <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
       </svg>
-      <span class="pr-2">Dashboard</span>
+      <span class="pr-2">Invoice</span>
+      <div v-if="showFirst" class="Navbar__container">
+        <b-card>
+          <div class="Navbar__card">Credit Invoice</div>
+          <div>Cash Invoice</div>
+        </b-card>
+      </div>
+    </div>
+
+    <div @mouseover="onOver" @mouseleave="onLeave" class="Navbar__smallBoxes">
+      <svg
+        width="25px"
+        height="25px"
+        viewBox="0 0 16 16"
+        class="bi bi-house-door-fill"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"
+        />
+        <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+      </svg>
+      <span class="pr-2">Stock In</span>
+    </div>
+
+    <div @mouseover="onOver" @mouseleave="onLeave" class="Navbar__smallBoxes">
+      <svg
+        width="25px"
+        height="25px"
+        viewBox="0 0 16 16"
+        class="bi bi-house-door-fill"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"
+        />
+        <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+      </svg>
+      <span class="pr-2">Stock In</span>
+      <div v-if="showFirst" class="Navbar__container">
+        <b-card>
+          <div class="Navbar__card">Books</div>
+          <div>Govt Books</div>
+          <div>Stationery</div>
+        </b-card>
+      </div>
+    </div>
+
+    <div @mouseover="onOver" @mouseleave="onLeave" class="Navbar__smallBoxes">
+      <svg
+        width="25px"
+        height="25px"
+        viewBox="0 0 16 16"
+        class="bi bi-house-door-fill"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"
+        />
+        <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
+      </svg>
+      <span class="pr-2">Buyer List</span>
+      <div v-if="showFirst" class="Navbar__container">
+        <b-card>
+          <div class="Navbar__card">Schools</div>
+          <div>Companies</div>
+        </b-card>
+      </div>
     </div>
 
     <div class="Navbar__smallBoxes">
@@ -57,7 +127,7 @@
         />
         <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z" />
       </svg>
-      <span class="pr-2">Dashboard</span>
+      <span class="pr-2">Publishers List</span>
     </div>
   </div>
 </template>
@@ -66,15 +136,22 @@
 export default {
   data() {
     return {
-      showFirst: false
+      showFirst: false,
     };
   },
 
   methods: {
-    showNavbar(data) {
-      setTimeout(() => {
-        this.showFirst = data
-      }, 300);
+    // showNavbar(data) {
+    //   setTimeout(() => {
+    //     this.showFirst = data;
+    //   }, 300);
+    // },
+
+    onOver() {
+      this.showFirst = true;
+    },
+    onLeave() {
+      this.showFirst = false;
     },
   },
 };
