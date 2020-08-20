@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
 import 'bootstrap-vue/dist/bootstrap-vue-icons.min.css'
 import "vue-multiselect/dist/vue-multiselect.min.css"
-import "./multiselect.scss";
+import "./assets/multiselect.scss";
 
 
 const DEFAULT_TITLE = 'Sri Srinivasa Stationery';
