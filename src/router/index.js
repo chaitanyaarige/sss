@@ -37,14 +37,14 @@ Vue.use(VueRouter)
     path: '/stockin/govtbooks',
     name: 'govtbooks',
     component: function () {
-      return import('../components/govtbooks.vue')
+      return import('../pages/govtbooks.vue')
     }
   },
   {
     path: '/stockin/stationery',
     name: 'stockin',
     component: function () {
-      return import('../components/stationery.vue')
+      return import('../pages/stationery.vue')
     }
   },
   {

@@ -1,14 +1,29 @@
 export default ({
   state: {
-    languages: 2,
+    schools: [
+      {
+      id:1,
+      name: 'first',
+      address: 'hyderabad',
+      phone: 123
+    },
+    {
+      id:2,
+      name: 'second',
+      address: 'hyderabad',
+      phone: 123
+    }
+  ],
   },
   getters: {
-    languages: state => state.languages,
+    schools: state => state.schools,
   },
   actions: {
 
   },
   mutations: {
-
+    addSchool(data) {
+      this.state.schools.push(data)
+    }
   }
 })

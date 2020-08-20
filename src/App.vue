@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <Topbar />
-    <Navbar />
+    <Navbar v-if="isLoggedIn" />
     <div class="max-widths">
-      <router-view class="bg-whites" />
+      <router-view v-if="isLoggedIn" class="bg-whites"/>
+      <Login v-if="!isLoggedIn"/>
     </div>
   </div>
 </template>
@@ -11,11 +12,20 @@
 <script>
 import Topbar from "@/components/Topbar.vue";
 import Navbar from "@/components/Navbar.vue";
+import Login from "@/components/Login.vue";
+import { mapState, mapGetters } from "vuex";
 
 export default {
   components: {
     Navbar,
     Topbar,
+    Login
+  },
+
+  computed: {
+    ...mapState({
+      isLoggedIn: (state) => state.auth.isLoggedIn,
+    })
   },
 };
 </script>

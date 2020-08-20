@@ -2,10 +2,10 @@
     <div class="BillTable__main-container">
         <b-table hover :items="items" :fields="fields"></b-table>
         <div>
-
+            hi
         </div>
         <div>
-
+            no hi
         </div>
     </div>
 </template>
@@ -54,7 +54,7 @@ export default {
         {
           key: "total_amount",
           label: "Amount",
-        }, 
+        },
       ],
       items: [
         {
