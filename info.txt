@@ -1,0 +1,11 @@
+remove in-line CSS
+Make a login page - with Fixed Frontend Users. 
+Store Token in Local store - Destroy on close. 
+Generate random Token on login.
+Make All routes Secure, except login.
+
+Add transition to the dropdowns in Nav - slow linear 
+
+remove bootstrap icons from package json
+
+Invert the Chevron - in Nav - like purple - after it is hovered 

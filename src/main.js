@@ -2,13 +2,19 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+import Multiselect from 'vue-multiselect'
 
 Vue.config.productionTip = false
-Vue.use(BootstrapVue, IconsPlugin)
+Vue.use(BootstrapVue, BootstrapVueIcons)
+Vue.component('multiselect', Multiselect)
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import 'bootstrap-vue/dist/bootstrap-vue-icons.min.css'
+import "vue-multiselect/dist/vue-multiselect.min.css"
+import "./multiselect.scss";
+
 
 const DEFAULT_TITLE = 'Sri Srinivasa Stationery';
 router.afterEach((to, from) => {

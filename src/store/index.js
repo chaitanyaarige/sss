@@ -1,15 +1,23 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import list from './list'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    language: 2,
   },
-  mutations: {
+  getters: {
+    language: state => state.language,
   },
   actions: {
+
+  },
+  mutations: {
+
   },
   modules: {
+    list: list,
   }
 })
