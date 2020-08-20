@@ -1,6 +1,6 @@
 export default ({
   state: {
-    isLoggedIn: false
+    isLoggedIn: true
   },
   getters: {
     isLoggedIn: state => state.isLoggedIn,
