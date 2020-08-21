@@ -1,11 +1,25 @@
+https://ecstatic-franklin-77d7cd.netlify.app
+
 remove in-line CSS
-Make a login page - with Fixed Frontend Users. 
-Store Token in Local store - Destroy on close. 
+Make a login page - with Fixed Frontend Users.
+Store Token in Local store - Destroy on close.
 Generate random Token on login.
 Make All routes Secure, except login.
 
-Add transition to the dropdowns in Nav - slow linear 
+Add transition to the dropdowns in Nav - slow linear
 
 remove bootstrap icons from package json
 
-Invert the Chevron - in Nav - like purple - after it is hovered 
+Invert the Chevron - in Nav - like purple - after it is hovered
+..create JWT
+30 days of Code
+unit testing an app in React
+x 2020-07-18 unit testing an app in Vue
+unit testing in Node js - Express
+#challenge SQL raw queries to remember - left JOIN
+time finder in local and send in backend
+CLOSE OBC Bank
+Implement NUXT in pharmacy
+OPEN HDFC bank
+https://nextjs.org/learn/basics/dynamic-routes/dynamic-routes-details
+gsettings set org.gnome.desktop.screensaver lock-enabled true

@@ -8,7 +8,10 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Home',
-    component: Home
+    // component: Home
+    component: function () {
+      return import('../pages/schools.vue')
+    }
   },
   {
     path: '/creditbill',
