@@ -24,7 +24,7 @@
     </div>
 
     <div
-      v-for="(item, index) in schoolList"
+      v-for="(item, index) in dataList"
       :key="index"
       class="BuyersTable__table-container"
     >
@@ -49,13 +49,13 @@
         class="BuyersTable__table-content BuyersTable__table-content-actions"
       >
         <div
-          @click="editSchoolData(item)"
+          @click="editData(item)"
           class="BuyersTable__button-container"
         >
           <div class="BuyersTable__edit-button">Edit</div>
         </div>
         <div
-          @click="deleteSchoolData(item)"
+          @click="deleteData(item)"
         class="BuyersTable__button-container">
           <div class="BuyersTable__delete-button">Delete</div>
         </div>
@@ -68,14 +68,14 @@
 export default {
   name: "BuyersTable",
 
-  props: ["schoolList"],
+  props: ["dataList"],
 
   methods: {
-    editSchoolData(item) {
-      this.$emit("editSchoolData", item);
+    editData(item) {
+      this.$emit("editData", item);
     },
-    deleteSchoolData(item) {
-      this.$emit("deleteSchoolData", item)
+    deleteData(item) {
+      this.$emit("deleteData", item)
     }
   }
 };

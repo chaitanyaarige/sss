@@ -1,7 +1,7 @@
 <template>
   <div class="Schools__main-container">
     <div class="Schools__first-container">
-      <div class="Schools__main-title">{{editForm ? "Edit" : "Add"}} School Data</div>
+      <div class="Schools__main-title">{{editForm ? "Edit" : "Add"}} Company Data</div>
       <div class="Schools__toggle-form" @click="toggleShowForm()">
         <svg
           v-if="!showForm"
@@ -38,12 +38,12 @@
     <div v-if="showForm" class="Schools__sub-container">
       <div class="Schools__second-row">
         <div class="Schools__input-fields">
-          <label for="name">School Name</label>
+          <label for="name">Company Name</label>
           <input
             class="Schools__input-fields-deep"
             type="text"
             name="name"
-            v-model="newSchool.name"
+            v-model="newCompany.name"
           />
         </div>
         <div class="Schools__input-fields">
@@ -52,7 +52,7 @@
             class="Schools__input-fields-deep"
             type="text"
             name="city"
-            v-model="newSchool.city"
+            v-model="newCompany.city"
           />
         </div>
       </div>
@@ -63,7 +63,7 @@
             class="Schools__input-fields-deep"
             type="text"
             name="address"
-            v-model="newSchool.address"
+            v-model="newCompany.address"
           />
         </div>
         <div class="Schools__input-fields">
@@ -72,7 +72,7 @@
             class="Schools__input-fields-deep"
             type="text"
             name="phone"
-            v-model="newSchool.phone"
+            v-model="newCompany.phone"
           />
         </div>
         <div class="Schools__button">
@@ -85,7 +85,7 @@
     </div>
 
     <div class="Schools__second-container">
-      <div class="Schools__main-title">Edit School Data</div>
+      <div class="Schools__main-title">Edit Company Data</div>
       <div class="Schools__toggle-form">
         <svg
           width="25px"
@@ -110,22 +110,18 @@
     <div class="Schools__sub-container-two">
       <div class="Schools__first-row">
         <multiselect
-          v-model="newSchool.name"
+          v-model="newCompany.name"
           track-by="id"
           :searchable="true"
-          :options="schoolList"
+          :options="companyList"
           label="name"
         ></multiselect>
       </div>
     </div>
 
     <div class="Schools__third-container">
-      <div class="Schools__main-title">School Data</div>
-      <BuyersTable
-        :dataList="schoolList"
-        @editData="editData"
-        @deleteData="deleteData"
-      />
+      <div class="Schools__main-title">Company Data</div>
+      <BuyersTable :dataList="companyList" @editData="editData" @deleteData="deleteData" />
     </div>
   </div>
 </template>
@@ -135,13 +131,13 @@ import { mapState, mapGetters } from "vuex";
 import BuyersTable from "@/components/BuyersTable.vue";
 
 export default {
-  name: "Schools",
+  name: "Company",
 
   data() {
     return {
       showForm: false,
       editForm: false,
-      newSchool: {
+      newCompany: {
         id: null,
         name: "",
         address: "",
@@ -159,7 +155,7 @@ export default {
     ...mapState({
       leftColor: (state) => state.leftColor,
       rightColor: (state) => state.rightColor,
-      schoolList: (state) => state.schoolList.schools,
+      companyList: (state) => state.companyList.companies,
     }),
   },
 
@@ -168,45 +164,45 @@ export default {
       this.showForm = !this.showForm;
     },
     clearData() {
-      this.newSchool.id = null;
-      this.newSchool.name = "";
-      this.newSchool.address = "";
-      this.newSchool.phone = "";
-      this.newSchool.city = "";
+      this.newCompany.id = null;
+      this.newCompany.name = "";
+      this.newCompany.address = "";
+      this.newCompany.phone = "";
+      this.newCompany.city = "";
     },
     editData(data) {
       const { name, address, city, phone, id } = data;
-      this.newSchool.name = name;
-      this.newSchool.id = id;
-      this.newSchool.address = address;
-      this.newSchool.city = city;
-      this.newSchool.phone = phone;
+      this.newCompany.name = name;
+      this.newCompany.id = id;
+      this.newCompany.address = address;
+      this.newCompany.city = city;
+      this.newCompany.phone = phone;
       this.editForm = true;
       this.showForm = true;
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0;
     },
     submit() {
-      if (!this.newSchool.name && !this.newSchool.phone) return;
+      if (!this.newCompany.name && !this.newCompany.phone) return;
       if (!this.editForm) {
         // remove below code before sending to DB
-        const ids = this.schoolList.map((item) => item.id);
+        const ids = this.companyList.map((item) => item.id);
         const sorted = ids.sort((a, b) => a - b);
         const highestId = sorted.length - 1;
-        this.newSchool.id = sorted[highestId] + 1;
+        this.newCompany.id = sorted[highestId] + 1;
 
-        this.$store.commit("schoolList/addSchool", this.newSchool);
+        this.$store.commit("companyList/addCompany", this.newCompany);
       } else {
-        this.newSchool.id = this.$store.commit(
-          "schoolList/editSchool",
-          this.newSchool
+        this.newCompany.id = this.$store.commit(
+          "companyList/editCompany",
+          this.newCompany
         );
       }
       this.toggleShowForm();
       this.editForm = false;
     },
     deleteData() {
-      this.$store.commit("schoolList/deleteSchool", this.newSchool);
+      this.$store.commit("companyList/deleteCompany", this.newCompany);
     },
   },
 };

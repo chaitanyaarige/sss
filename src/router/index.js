@@ -68,7 +68,7 @@ Vue.use(VueRouter)
     path: '/companies',
     name: 'companies',
     component: function () {
-      return import('../pages/companies.vue')
+      return import('../pages/Companies/index.vue')
     }
   },
   {
