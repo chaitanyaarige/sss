@@ -54,7 +54,9 @@
         >
           <div class="BuyersTable__edit-button">Edit</div>
         </div>
-        <div class="BuyersTable__button-container">
+        <div
+          @click="deleteSchoolData(item)"
+        class="BuyersTable__button-container">
           <div class="BuyersTable__delete-button">Delete</div>
         </div>
       </div>
@@ -71,6 +73,9 @@ export default {
   methods: {
     editSchoolData(item) {
       this.$emit("editSchoolData", item);
+    },
+    deleteSchoolData(item) {
+      this.$emit("deleteSchoolData", item)
     }
   }
 };

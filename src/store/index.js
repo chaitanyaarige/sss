@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import list from './list'
+import schoolList from './schoolList'
 import auth from './auth'
 
 Vue.use(Vuex)
@@ -23,7 +23,7 @@ export default new Vuex.Store({
 
   },
   modules: {
-    list: list,
+    schoolList: schoolList,
     auth: auth
   }
 })

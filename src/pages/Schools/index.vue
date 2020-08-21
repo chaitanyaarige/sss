@@ -1,7 +1,7 @@
 <template>
   <div class="Schools__main-container">
     <div class="Schools__first-container">
-      <div class="Schools__main-title">Add School Data</div>
+      <div class="Schools__main-title">{{editForm ? "Edit" : "Add"}} School Data</div>
       <div class="Schools__toggle-form" @click="toggleShowForm()">
         <svg
           v-if="!showForm"
@@ -75,11 +75,11 @@
             v-model="newSchool.phone"
           />
         </div>
-        <div Class="Schools__button">
-          <b-button squared variant="outline-secondary">Submit</b-button>
+        <div class="Schools__button">
+          <b-button @click="submit()" variant="outline-secondary">Submit</b-button>
         </div>
-        <div Class="Schools__button">
-          <b-button squared variant="outline-secondary">Clear</b-button>
+        <div class="Schools__button">
+          <b-button @click="clearData" squared variant="outline-secondary">Clear</b-button>
         </div>
       </div>
     </div>
@@ -112,7 +112,7 @@
         <multiselect
           v-model="newSchool.name"
           track-by="id"
-          searchable='true'
+          :searchable="true"
           :options="schoolList"
           label="name"
         ></multiselect>
@@ -121,7 +121,11 @@
 
     <div class="Schools__third-container">
       <div class="Schools__main-title">School Data</div>
-      <BuyersTable :schoolList="schoolList" @editSchoolData="editSchoolData" />
+      <BuyersTable
+        :schoolList="schoolList"
+        @editSchoolData="editSchoolData"
+        @deleteSchoolData="deleteSchoolData"
+      />
     </div>
   </div>
 </template>
@@ -136,43 +140,75 @@ export default {
   data() {
     return {
       showForm: false,
+      editForm: false,
       newSchool: {
+        id: null,
         name: "",
         address: "",
         city: "",
-        phone: null
-      }
+        phone: null,
+      },
     };
   },
 
   components: {
-    BuyersTable
+    BuyersTable,
   },
 
   computed: {
     ...mapState({
-      leftColor: state => state.leftColor,
-      rightColor: state => state.rightColor,
-      schoolList: state => state.list.schools
-    })
+      leftColor: (state) => state.leftColor,
+      rightColor: (state) => state.rightColor,
+      schoolList: (state) => state.schoolList.schools,
+    }),
   },
 
   methods: {
     toggleShowForm() {
       this.showForm = !this.showForm;
     },
-    addNewSchool() {},
-    getAllSchools() {},
+    clearData() {
+      this.newSchool.id = null;
+      this.newSchool.name = "";
+      this.newSchool.address = "";
+      this.newSchool.phone = "";
+      this.newSchool.city = "";
+    },
     editSchoolData(data) {
       const { name, address, city, phone, id } = data;
       this.newSchool.name = name;
+      this.newSchool.id = id;
       this.newSchool.address = address;
       this.newSchool.city = city;
       this.newSchool.phone = phone;
+      this.editForm = true;
       this.showForm = true;
+      document.body.scrollTop = 0; // For Safari
+      document.documentElement.scrollTop = 0;
     },
-    deleteSchool() {}
-  }
+    submit() {
+      if (!this.newSchool.name && !this.newSchool.phone) return;
+      if (!this.editForm) {
+        // remove below code before sending to DB
+        const ids = this.schoolList.map((item) => item.id);
+        const sorted = ids.sort((a, b) => a - b);
+        const highestId = sorted.length - 1;
+        this.newSchool.id = sorted[highestId] + 1;
+
+        this.$store.commit("schoolList/addSchool", this.newSchool);
+      } else {
+        this.newSchool.id = this.$store.commit(
+          "schoolList/editSchool",
+          this.newSchool
+        );
+      }
+      this.toggleShowForm();
+      this.editForm = false;
+    },
+    deleteSchoolData() {
+      this.$store.commit("schoolList/deleteSchool", this.newSchool);
+    },
+  },
 };
 </script>
 
