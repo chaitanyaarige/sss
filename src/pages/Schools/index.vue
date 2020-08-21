@@ -4,6 +4,7 @@
       <div class="Schools__main-title">Please Add School Data</div>
       <div class="Schools__toggle-form" @click="toggleShowForm()">
         <svg
+          v-if="!showForm"
           width="25px"
           height="25px"
           viewBox="0 0 16 16"
@@ -14,6 +15,21 @@
           <path
             fill-rule="evenodd"
             d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"
+          />
+        </svg>
+
+        <svg
+          v-if="showForm"
+          width="25px"
+          height="25px"
+          viewBox="0 0 16 16"
+          class="bi bi-dash-circle-fill"
+          :fill="leftColor"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4 7.5a.5.5 0 0 0 0 1h8a.5.5 0 0 0 0-1H4z"
           />
         </svg>
       </div>
@@ -99,29 +115,16 @@
       </div>
     </div>
 
-    <div class="Schools__second-container">
-      <div class="Schools__main-title">Edit School Data</div>
-      <div class="Schools__toggle-form">
-        <svg
-          width="25px"
-          height="25px"
-          viewBox="0 0 16 16"
-          class="bi bi-plus-circle-fill"
-          :fill="leftColor"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"
-          />
-        </svg>
-      </div>
+    <div class="Schools__third-container">
+      <div class="Schools__main-title">School Data</div>
+      <BuyersTable :schoolList="schoolList" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
+import BuyersTable from "@/components/BuyersTable.vue";
 
 export default {
   name: "Schools",
@@ -135,6 +138,10 @@ export default {
         phone: null
       }
     };
+  },
+
+  components: {
+    BuyersTable
   },
 
   computed: {
@@ -158,73 +165,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-input,
-label {
-  display: block;
-  margin-bottom: unset;
-}
-
-.Schools {
-  &__main-container {
-    max-width: 1100px;
-    margin: auto;
-    padding-top: 25px;
-  }
-
-  &__first-container {
-    display: flex;
-  }
-
-  &__button {
-    margin: 14px 40px;
-  }
-
-  &__second-container {
-    display: flex;
-    padding-top: 20px;
-    border-top: 2px dotted lightgray;
-  }
-
-  &__input-fields-deep {
-    line-height: 1.8;
-    color: #495057;
-    width: 250px;
-    background-color: #fff;
-    background-clip: padding-box;
-    border: 1px solid #ced4da;
-    border-radius: 0.25rem;
-  }
-
-  &__input-fields {
-    text-align: left;
-    margin: 0 10px 10px 0;
-  }
-
-  &__sub-container {
-    max-width: 700px;
-    margin-left: 12px;
-    margin-bottom: 30px;
-  }
-
-  &__sub-container-two {
-    max-width: 500px;
-    margin-left: 12px;
-    margin-top: 10px;
-    margin-bottom: 30px;
-  }
-
-  &__toggle-form {
-    cursor: pointer;
-  }
-
-  &__main-title {
-    display: flex;
-    font-size: 20px;
-    padding: 0 12px 10px;
-  }
-
-  &__second-row {
-    display: flex;
-  }
-}
+@import "index";
 </style>

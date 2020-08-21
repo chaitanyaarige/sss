@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../pages/Home.vue'
+import Home from '../pages/index.vue'
 
 Vue.use(VueRouter)
 
@@ -10,7 +10,7 @@ Vue.use(VueRouter)
     name: 'Home',
     // component: Home
     component: function () {
-      return import('../pages/schools.vue')
+      return import('../pages/Schools/index.vue')
     }
   },
   {
@@ -59,9 +59,9 @@ Vue.use(VueRouter)
   },
   {
     path: '/schools',
-    name: 'schools',
+    name: 'Schools',
     component: function () {
-      return import('../pages/schools.vue')
+      return import('../pages/Schools/index.vue')
     }
   },
   {
@@ -75,7 +75,7 @@ Vue.use(VueRouter)
     path: '/audit',
     name: 'Audit',
     component: function () {
-      return import('../pages/Audit.vue')
+      return import('../pages/Audit/index.vue')
     }
   }
 ]

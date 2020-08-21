@@ -3,14 +3,16 @@ export default ({
     schools: [
       {
       id:1,
-      name: 'first',
-      address: 'hyderabad',
+      name: 'Zilla parishad High School',
+      address: 'Patancheru',
+      city: 'Hyderabad',
       phone: 123
     },
     {
       id:2,
-      name: 'second',
-      address: 'hyderabad',
+      name: 'Jyothi Vidyalaya School',
+      address: 'bhel hyderabad',
+      city: 'Any Indian city',
       phone: 123
     }
   ],

@@ -35,7 +35,7 @@
       <span class="pl-2">Credit Invoice</span>
     </div>
 
-    <div @click.prevent="routemeto('cashbill')" class="Navbar__smallBoxes">
+    <div @click.stop="routemeto('cashbill')" class="Navbar__smallBoxes">
       <span class="Navbar__rupee">&#8377;</span>
       <span class="pl-2">Cash Invoice</span>
     </div>
