@@ -1,5 +1,7 @@
 https://ecstatic-franklin-77d7cd.netlify.app
 
+ADD Bootstrap TOAST -- for School/Company Submit - IF ERROR/SUCCESS
+
 remove in-line CSS
 Make a login page - with Fixed Frontend Users.
 Store Token in Local store - Destroy on close.
