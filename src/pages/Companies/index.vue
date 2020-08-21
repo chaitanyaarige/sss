@@ -169,6 +169,7 @@ export default {
       this.newCompany.address = "";
       this.newCompany.phone = "";
       this.newCompany.city = "";
+      this.editForm = false;
     },
     editData(data) {
       const { name, address, city, phone, id } = data;

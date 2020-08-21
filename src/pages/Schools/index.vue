@@ -173,6 +173,7 @@ export default {
       this.newSchool.address = "";
       this.newSchool.phone = "";
       this.newSchool.city = "";
+      this.editForm = false;
     },
     editData(data) {
       const { name, address, city, phone, id } = data;
