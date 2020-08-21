@@ -10,7 +10,7 @@ Vue.use(VueRouter)
     name: 'Home',
     // component: Home
     component: function () {
-      return import('../pages/Schools/index.vue')
+      return import('../pages/Companies/index.vue')
     }
   },
   {
@@ -37,24 +37,10 @@ Vue.use(VueRouter)
     }
   },
   {
-    path: '/stockin/govtbooks',
-    name: 'govtbooks',
-    component: function () {
-      return import('../pages/govtbooks.vue')
-    }
-  },
-  {
-    path: '/stockin/stationery',
-    name: 'stockin',
-    component: function () {
-      return import('../pages/stationery.vue')
-    }
-  },
-  {
     path: '/publishers',
     name: 'publishers',
     component: function () {
-      return import('../pages/publishers.vue')
+      return import('../pages/Publishers/index.vue')
     }
   },
   {

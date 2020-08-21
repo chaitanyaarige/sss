@@ -14,12 +14,12 @@
         City
       </div>
       <div class="BuyersTable__table-heading BuyersTable__table-heading-phone">
-        phone
+        Phone
       </div>
       <div
         class="BuyersTable__table-heading BuyersTable__table-heading-actions"
       >
-        Edit/Delete
+        Edit / Delete
       </div>
     </div>
 

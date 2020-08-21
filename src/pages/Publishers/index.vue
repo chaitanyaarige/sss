@@ -21,7 +21,14 @@
 </template>
 
 <script>
+import StationeryList from '@/components/Publishers/StationeryList.vue'
+
 export default {
+
+  components: {
+    StationeryList
+  },
+
   data() {
     return {
       fields: [
