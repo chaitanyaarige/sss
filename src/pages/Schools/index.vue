@@ -1,7 +1,7 @@
 <template>
   <div class="Schools__main-container">
     <div class="Schools__first-container">
-      <div class="Schools__main-title">Please Add School Data</div>
+      <div class="Schools__main-title">Add School Data</div>
       <div class="Schools__toggle-form" @click="toggleShowForm()">
         <svg
           v-if="!showForm"
@@ -43,7 +43,7 @@
             class="Schools__input-fields-deep"
             type="text"
             name="name"
-            v-model="newSchool.name.name"
+            v-model="newSchool.name"
           />
         </div>
         <div class="Schools__input-fields">
@@ -78,6 +78,9 @@
         <div Class="Schools__button">
           <b-button squared variant="outline-secondary">Submit</b-button>
         </div>
+        <div Class="Schools__button">
+          <b-button squared variant="outline-secondary">Clear</b-button>
+        </div>
       </div>
     </div>
 
@@ -109,6 +112,7 @@
         <multiselect
           v-model="newSchool.name"
           track-by="id"
+          searchable='true'
           :options="schoolList"
           label="name"
         ></multiselect>
@@ -117,7 +121,7 @@
 
     <div class="Schools__third-container">
       <div class="Schools__main-title">School Data</div>
-      <BuyersTable :schoolList="schoolList" />
+      <BuyersTable :schoolList="schoolList" @editSchoolData="editSchoolData" />
     </div>
   </div>
 </template>
@@ -135,6 +139,7 @@ export default {
       newSchool: {
         name: "",
         address: "",
+        city: "",
         phone: null
       }
     };
@@ -158,7 +163,14 @@ export default {
     },
     addNewSchool() {},
     getAllSchools() {},
-    editSchoolData() {},
+    editSchoolData(data) {
+      const { name, address, city, phone, id } = data;
+      this.newSchool.name = name;
+      this.newSchool.address = address;
+      this.newSchool.city = city;
+      this.newSchool.phone = phone;
+      this.showForm = true;
+    },
     deleteSchool() {}
   }
 };
