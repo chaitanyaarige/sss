@@ -166,7 +166,6 @@ export default {
   methods: {
     toggleShowForm() {
       this.showForm = !this.showForm;
-      if(!this.showForm) this.clearData()
     },
     clearData() {
       this.newSchool.id = null;
@@ -196,13 +195,9 @@ export default {
         const sorted = ids.sort((a, b) => a - b);
         const highestId = sorted.length - 1;
         this.newSchool.id = sorted[highestId] + 1;
-
         this.$store.commit("schoolList/addSchool", this.newSchool);
       } else {
-        this.newSchool.id = this.$store.commit(
-          "schoolList/editSchool",
-          this.newSchool
-        );
+        this.$store.commit("schoolList/editSchool", this.newSchool);
       }
       this.toggleShowForm();
       this.editForm = false;

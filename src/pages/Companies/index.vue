@@ -142,7 +142,6 @@ export default {
   methods: {
     toggleShowForm() {
       this.showForm = !this.showForm;
-      if(!this.showForm) this.clearData()
     },
     clearData() {
       this.newCompany.id = null;
