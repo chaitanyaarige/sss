@@ -3,18 +3,21 @@
     <div class="BuyersTable__table-container">
       <div class="BuyersTable__table-heading BuyersTable__table-content-id">Serial #</div>
       <div class="BuyersTable__table-heading BuyersTable__table-heading-name">
-        Name
+        Code
       </div>
       <div
         class="BuyersTable__table-heading BuyersTable__table-heading-address"
       >
-        Address
+        Product Name
       </div>
       <div class="BuyersTable__table-heading BuyersTable__table-heading-city">
-        City
+        GST
       </div>
       <div class="BuyersTable__table-heading BuyersTable__table-heading-phone">
-        Phone
+        Unit Price
+      </div>
+      <div style="display: none" class="BuyersTable__table-heading BuyersTable__table-heading-phone">
+        Unit Price
       </div>
       <div
         class="BuyersTable__table-heading BuyersTable__table-heading-actions"
@@ -32,18 +35,18 @@
         {{ item.id }}
       </div>
       <div class="BuyersTable__table-content BuyersTable__table-content-name">
-        {{ item.name }}
+        {{ item.prod_code }}
       </div>
       <div
         class="BuyersTable__table-content BuyersTable__table-content-address"
       >
-        {{ item.address }}
+        {{ item.prod_name }}
       </div>
       <div class="BuyersTable__table-content BuyersTable__table-content-city">
-        {{ item.city }}
+        {{ item.pre_gst }}
       </div>
       <div class="BuyersTable__table-content BuyersTable__table-content-phone">
-        {{ item.phone }}
+        {{ item.unit_price }}
       </div>
       <div
         class="BuyersTable__table-content BuyersTable__table-content-actions"
@@ -66,7 +69,7 @@
 
 <script>
 export default {
-  name: "BuyersTable",
+  name: "PublishersTable",
 
   props: ["dataList"],
 
@@ -82,5 +85,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "BuyersTable";
+@import "PublisherTable";
 </style>

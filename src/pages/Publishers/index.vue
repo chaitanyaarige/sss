@@ -5,17 +5,17 @@
         @click="activateTab(1)"
         class="m-4 Publisher__underline"
         :class="{'Publisher__underline-active': activeTab === 1 }"
-      >Add Stationery</div>
+      >Stationery</div>
       <div
         @click="activateTab(2)"
         class="m-4 Publisher__underline"
         :class="{'Publisher__underline-active': activeTab === 2 }"
-      >Add Books</div>
+      >Books</div>
       <div
         @click="activateTab(3)"
         class="m-4 Publisher__underline"
         :class="{'Publisher__underline-active': activeTab === 3 }"
-      >Add Govt Books</div>
+      >Govt Books</div>
     </div>
 
     <StationeryList v-if="activeTab === 1" />
@@ -30,6 +30,7 @@ import GeneralBooks from "@/components/Publishers/GeneralBooks.vue";
 import GovtBooks from "@/components/Publishers/GovtBooks.vue";
 
 export default {
+  name: "Publishers",
   components: {
     StationeryList,
     GeneralBooks,

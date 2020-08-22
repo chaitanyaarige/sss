@@ -38,41 +38,59 @@
     <div v-if="showForm" class="Schools__sub-container">
       <div class="Schools__second-row">
         <div class="Schools__input-fields">
-          <label for="name">Stationery Name</label>
+          <label for="name">Product Code</label>
           <input
             class="Schools__input-fields-deep"
             type="text"
             name="name"
-            v-model="newCompany.name"
+            v-model="newstationery.prod_code"
           />
         </div>
         <div class="Schools__input-fields">
-          <label for="city">City</label>
+          <label for="city">Product Name</label>
           <input
             class="Schools__input-fields-deep"
             type="text"
             name="city"
-            v-model="newCompany.city"
+            v-model="newstationery.prod_name"
+          />
+        </div>
+        <div class="Schools__input-fields">
+          <label for="address">Manufacturer</label>
+          <input
+            class="Schools__input-fields-deep"
+            type="text"
+            name="address"
+            v-model="newstationery.manufacturer"
           />
         </div>
       </div>
       <div class="Schools__second-row">
         <div class="Schools__input-fields">
-          <label for="address">Address</label>
+          <label for="address">Unit Price</label>
           <input
             class="Schools__input-fields-deep"
             type="text"
             name="address"
-            v-model="newCompany.address"
+            v-model="newstationery.unit_price"
           />
         </div>
         <div class="Schools__input-fields">
-          <label for="phone">Phone</label>
+          <label for="phone">Pre GST</label>
           <input
             class="Schools__input-fields-deep"
             type="text"
             name="phone"
-            v-model="newCompany.phone"
+            v-model="newstationery.pre_gst"
+          />
+        </div>
+        <div class="Schools__input-fields">
+          <label for="address">Post GST</label>
+          <input
+            class="Schools__input-fields-deep"
+            type="text"
+            name="address"
+            v-model="newstationery.post_gst"
           />
         </div>
         <div class="Schools__button">
@@ -84,46 +102,46 @@
       </div>
     </div>
 
-    <div class="Schools__second-container">
-    </div>
+    <div class="Schools__second-container"></div>
 
     <div class="Schools__third-container">
       <div class="Schools__main-title">Stationery Data</div>
-      <BuyersTable :dataList="companyList" @editData="editData" @deleteData="deleteData" />
+      <PublisherTable :dataList="stationery" @editData="editData" @deleteData="deleteData" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import BuyersTable from "@/components/BuyersTable.vue";
+import PublisherTable from "@/components/PublisherTable.vue";
 
 export default {
-  name: "Company",
+  name: "StationeryList",
 
   data() {
     return {
       showForm: false,
       editForm: false,
-      newCompany: {
-        id: null,
-        name: "",
-        address: "",
-        city: "",
-        phone: null,
+      newstationery: {
+        prod_code: "",
+        prod_name: "",
+        manufacturer: "",
+        pre_gst: null,
+        post_gst: null,
+        unit_price: null,
       },
     };
   },
 
   components: {
-    BuyersTable,
+    PublisherTable,
   },
 
   computed: {
     ...mapState({
       leftColor: (state) => state.leftColor,
       rightColor: (state) => state.rightColor,
-      companyList: (state) => state.companyList.companies,
+      stationery: (state) => state.stationery.stationery,
     }),
   },
 
@@ -132,46 +150,50 @@ export default {
       this.showForm = !this.showForm;
     },
     clearData() {
-      this.newCompany.id = null;
-      this.newCompany.name = "";
-      this.newCompany.address = "";
-      this.newCompany.phone = "";
-      this.newCompany.city = "";
+      this.newstationery.id = null;
+      this.newstationery.prod_code = "";
+      this.newstationery.prod_name = "";
+      this.newstationery.manufacturer = "";
+      this.newstationery.pre_gst = "";
+      this.newstationery.post_gst = "";
+      this.newstationery.unit_price = "";
       this.editForm = false;
     },
     editData(data) {
-      const { name, address, city, phone, id } = data;
-      this.newCompany.name = name;
-      this.newCompany.id = id;
-      this.newCompany.address = address;
-      this.newCompany.city = city;
-      this.newCompany.phone = phone;
+      const { prod_code, prod_name, manufacturer, pre_gst, post_gst, unit_price, id } = data;
+      this.newstationery.prod_code = prod_code;
+      this.newstationery.id = id;
+      this.newstationery.prod_name = prod_name;
+      this.newstationery.manufacturer = manufacturer;
+      this.newstationery.pre_gst = pre_gst;
+      this.newstationery.post_gst = post_gst;
+      this.newstationery.unit_price = unit_price;
       this.editForm = true;
       this.showForm = true;
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0;
     },
     submit() {
-      if (!this.newCompany.name && !this.newCompany.phone) return;
+      if (!this.newstationery.prod_code && !this.newstationery.unit_price) return;
       if (!this.editForm) {
         // remove below code before sending to DB
-        const ids = this.companyList.map((item) => item.id);
+        const ids = this.stationery.map((item) => item.id);
         const sorted = ids.sort((a, b) => a - b);
         const highestId = sorted.length - 1;
-        this.newCompany.id = sorted[highestId] + 1;
+        this.stationery.id = sorted[highestId] + 1;
 
-        this.$store.commit("companyList/addCompany", this.newCompany);
+        this.$store.commit("stationery/addStationery", this.newstationery);
       } else {
-        this.newCompany.id = this.$store.commit(
-          "companyList/editCompany",
-          this.newCompany
+        this.stationery.id = this.$store.commit(
+          "stationery/editStationery",
+          this.newstationery
         );
       }
       this.toggleShowForm();
       this.editForm = false;
     },
     deleteData() {
-      this.$store.commit("companyList/deleteCompany", this.newCompany);
+      this.$store.commit("stationery/deleteStationery", this.stationery);
     },
   },
 };

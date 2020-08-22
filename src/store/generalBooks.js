@@ -5,10 +5,11 @@ export default ({
       {
         id:1,
         prod_code: "SC_001",
-        name: 'Zilla parishad High School',
-        address: 'Patancheru',
-        city: 'Hyderabad',
-        phone: 123
+        prod_name: 'Domyos Scale High School',
+        publisher: 'Kangaroo',
+        pre_gst: 12,
+        post_gst: 0,
+        unit_price: 12
       }
     ]
   },
@@ -21,9 +22,9 @@ export default ({
   mutations: {
     editgeneralBook(state, data) {
       let uniqueId = state.generalBooks.findIndex(item => item.id === data.id)
-      state.generalBooks[uniqueId].name = data.name
-      state.generalBooks[uniqueId].address = data.address
-      state.generalBooks[uniqueId].city = data.city
+      state.generalBooks[uniqueId].prod_code = data.prod_code
+      state.generalBooks[uniqueId].prod_name = data.prod_name
+      state.generalBooks[uniqueId].manufacturer = data.manufacturer
       state.generalBooks[uniqueId].phone = data.phone
     },
     addgeneralBook(state, data) {
