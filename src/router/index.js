@@ -8,10 +8,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    // component: Home
-    component: function () {
-      return import("../pages/Companies/index.vue");
-    }
+    component: Home
   },
   {
     path: "/creditbill",
@@ -30,17 +27,31 @@ const routes = [
     }
   },
   {
-    path: "/stockin",
-    name: "stockin",
+    path: "/stockin/books/",
+    name: "books",
     component: function () {
-      return import("../pages/stockin.vue");
+      return import("../pages/StockIn/books.vue");
     }
   },
   {
-    path: "/publishers",
-    name: "publishers",
+    path: "/stockin/govtbooks/",
+    name: "govtbooks",
     component: function () {
-      return import("../pages/Publishers/index.vue");
+      return import("../pages/StockIn/govtbooks.vue");
+    }
+  },
+  {
+    path: "/stockin/stationery",
+    name: "stationery",
+    component: function () {
+      return import("../pages/StockIn/stationery.vue");
+    }
+  },
+  {
+    path: "/companies",
+    name: "companies",
+    component: function () {
+      return import("../pages/Companies/index.vue");
     }
   },
   {
@@ -51,10 +62,10 @@ const routes = [
     }
   },
   {
-    path: "/companies",
-    name: "companies",
+    path: "/publishers",
+    name: "publishers",
     component: function () {
-      return import("../pages/Companies/index.vue");
+      return import("../pages/Publishers/index.vue");
     }
   },
   {

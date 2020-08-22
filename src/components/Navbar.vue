@@ -57,7 +57,7 @@
       <span class="pl-2">Stock In</span>
       <div v-if="showStock" class="Navbar__cardcontainer">
         <b-card>
-          <div @click.prevent="routemeto('stockin')" class="Navbar__card">Books</div>
+          <div @click.prevent="routemeto('stockin/books')" class="Navbar__card">Books</div>
           <div @click.prevent="routemeto('stockin/govtbooks')" class="Navbar__card">Govt Books</div>
           <div @click.prevent="routemeto('stockin/stationery')" class="Navbar__card">Stationery</div>
           <div
