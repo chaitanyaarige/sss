@@ -11,7 +11,7 @@
         Product Name
       </div>
       <div class="BuyersTable__table-heading BuyersTable__table-heading-city">
-        GST
+        GST%
       </div>
       <div class="BuyersTable__table-heading BuyersTable__table-heading-phone">
         Unit Price
@@ -43,7 +43,7 @@
         {{ item.prod_name }}
       </div>
       <div class="BuyersTable__table-content BuyersTable__table-content-city">
-        {{ item.pre_gst }}
+        {{ item.pre_gst }} %
       </div>
       <div class="BuyersTable__table-content BuyersTable__table-content-phone">
         {{ item.unit_price }}

@@ -12,7 +12,7 @@
       </div>
       <div style="display: flex" class="Cashbill__subthree">
         <div style="border: 1px solid grey">
-          <div>Invoice Number: CASH233/{{currentYear}}-{{(nextYear)}}</div>
+          <div>Invoice Number: SSS/CASH/{{invoice_number}}/{{currentYear}}-{{(nextYear)}}</div>
           <div>Date of Invoice: {{currentTime}}</div>
         </div>
         <div>
@@ -23,7 +23,7 @@
         <div>Billed To: {{(nextYear)}}</div>
       </div>
       <div  class="Cashbill__subfive">
-        <BillTable  />  
+        <BillTable  />
       </div>
       <div>total 3000 </div>
     </div>
@@ -50,6 +50,13 @@
 import BillTable from "@/components/BillTable.vue";
 
 export default {
+  name: "Cash_Bill",
+
+  data() {
+    return {
+      invoice_number:111,
+    }
+  },
 
   components:  {
     BillTable

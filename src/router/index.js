@@ -37,13 +37,6 @@ const routes = [
     }
   },
   {
-    path: "/stockout",
-    name: "stockout",
-    component: function () {
-      return import("../pages/stockin.vue");
-    }
-  },
-  {
     path: "/publishers",
     name: "publishers",
     component: function () {

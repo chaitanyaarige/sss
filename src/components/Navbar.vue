@@ -68,7 +68,7 @@
       </div>
     </div>
 
-    <div @click.stop="routemeto('')" class="Navbar__smallBoxes">
+    <!-- <div @click.stop="routemeto('')" class="Navbar__smallBoxes">
       <svg
         width="25px"
         height="25px"
@@ -83,7 +83,7 @@
         />
       </svg>
       <span class="pl-2">Stock Out</span>
-    </div>
+    </div> -->
 
     <div @mouseover="onOver('buyer')" @mouseleave="onLeave" class="Navbar__smallBoxes">
       <svg

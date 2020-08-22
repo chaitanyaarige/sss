@@ -4,12 +4,21 @@ export default ({
     stationery: [
       {
         id:1,
-        prod_code: "SC_001",
-        prod_name: 'Domyos Scale High School',
+        prod_code: "SC_DOM-001",
+        prod_name: 'Domyos Scale 15cm',
         manufacturer: 'Kangaroo',
         pre_gst: 12,
         post_gst: 0,
         unit_price: 12
+      },
+      {
+        id:2,
+        prod_code: "SC_DOM-002",
+        prod_name: 'Domyos Scale 30cm',
+        manufacturer: 'Kangaroo',
+        pre_gst: 12,
+        post_gst: 0,
+        unit_price: 24
       }
     ]
   },
