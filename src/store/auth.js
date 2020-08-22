@@ -1,6 +1,7 @@
 export default ({
+  namespaced: true,
   state: {
-    isLoggedIn: true
+    isLoggedIn: false
   },
   getters: {
     isLoggedIn: state => state.isLoggedIn,
@@ -9,13 +10,13 @@ export default ({
 
   },
   mutations: {
-    newLogin(data) {
-      if(data.username === 'sonu' && data.password === 'sonu') {
-        this.state.isLoggedIn = true
+    newLogin(state, data) {
+      if(data.email === 'sonu@sss.com' && data.password === 'sonu') {
+        state.isLoggedIn = true
       }
     },
     logoutCustomer() {
-      this.state.isLoggedIn = false
+      state.isLoggedIn = false
     }
   }
 })

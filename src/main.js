@@ -2,11 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import { BootstrapVue, BootstrapVueIcons } from 'bootstrap-vue'
+import { BootstrapVue, BootstrapVueIcons, BIcon } from 'bootstrap-vue'
 import Multiselect from 'vue-multiselect'
 
 Vue.config.productionTip = false
-Vue.use(BootstrapVue, BootstrapVueIcons)
+Vue.use(BootstrapVue, BootstrapVueIcons, BIcon)
 Vue.component('multiselect', Multiselect)
 
 import 'bootstrap/dist/css/bootstrap.css'

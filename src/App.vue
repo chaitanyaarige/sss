@@ -4,7 +4,7 @@
     <Navbar v-if="isLoggedIn" />
     <div class="max-widths">
       <router-view v-if="isLoggedIn" class="bg-whites"/>
-      <Login v-if="!isLoggedIn"/>
+      <Login v-if="!isLoggedIn" class="bg-whites"/>
     </div>
   </div>
 </template>

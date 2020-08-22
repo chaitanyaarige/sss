@@ -1,32 +1,29 @@
 <template>
   <div>
     <div class="ml-2" style="display:flex">
-      <div class="m-4 Publisher__underline-active">Add Books</div>
+      <div class="m-4 Publisher__underline-active">Add Stationery</div>
+      <div class="m-4 Publisher__underline">Add Books</div>
       <div class="m-4 Publisher__underline">Add Govt Books</div>
-      <div class="m-4 Publisher__underline">Add Stationery</div>
     </div>
 
-    <b-row>
-      <b-col lg="4" class="pb-2">
-        <b-button size="sm">Small Button</b-button>
-      </b-col>
-    </b-row>
+    <StationeryList />
+    <GeneralBooks/>
+    <GovtBooks/>
 
-    <b-container>
-      <b-card>
-        <b-table hover :items="items" :fields="fields"></b-table>
-      </b-card>
-    </b-container>
   </div>
 </template>
 
 <script>
 import StationeryList from '@/components/Publishers/StationeryList.vue'
+import GeneralBooks from '@/components/Publishers/GeneralBooks.vue'
+import GovtBooks from '@/components/Publishers/GovtBooks.vue'
 
 export default {
 
   components: {
-    StationeryList
+    StationeryList,
+    GeneralBooks,
+    GovtBooks
   },
 
   data() {
