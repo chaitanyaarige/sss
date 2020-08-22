@@ -17,7 +17,13 @@
       </div>
 
       <!-- Right aligned nav items -->
-      <b-navbar-nav v-b-tooltip.hover title="Log out" style="cursor: pointer" class="ml-auto mr-auto">
+      <b-navbar-nav
+        v-b-tooltip.hover
+        title="Log out"
+        @click="logoutCustomer"
+        style="cursor: pointer"
+        class="ml-auto mr-auto"
+      >
         <svg
           width="30px"
           height="30px"
@@ -38,8 +44,21 @@
 </template>
 
 <script>
+import { mapState, mapGetters } from "vuex";
 export default {
   name: "topbar",
+
+  computed: {
+    ...mapState({
+      isLoggedIn: (state) => state.auth.isLoggedIn,
+    }),
+  },
+
+  methods: {
+    logoutCustomer() {
+      this.$store.commit("auth/logoutCustomer");
+    },
+  },
 };
 </script>
 

@@ -15,7 +15,7 @@ export default ({
         state.isLoggedIn = true
       }
     },
-    logoutCustomer() {
+    logoutCustomer(state, data) {
       state.isLoggedIn = false
     }
   }

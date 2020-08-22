@@ -1,6 +1,6 @@
 <template>
   <div class="m-5 p-5">
-    <form>
+    <form  @click="login()">
       <h2 class="m-3">Happy to see you again!</h2>
       <h4 class="m-3">Login to Access...</h4>
       <h6 v-if="errorLogin" class="errorText">Wrong Password or Email, Try Again !!</h6>
@@ -27,7 +27,7 @@
           :class="{'errorClass': errorLogin}"
           @input="removeError()"
           type="text"
-          placeholder="sonu@SSstationery.com"
+          placeholder="sonu@sss.com"
           v-model="email"
           name="email"
         />
@@ -52,12 +52,12 @@
           type="password"
           @input="removeError()"
           v-model="password"
-          placeholder="Password"
+          placeholder="sonu"
           name="psw"
         />
       </div>
 
-      <b-button @click="login()" variant="outline">Login</b-button>
+      <b-button variant="outline">Login</b-button>
     </form>
   </div>
 </template>
