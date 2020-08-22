@@ -1,113 +1,52 @@
 <template>
   <div>
     <div class="ml-2" style="display:flex">
-      <div class="m-4 Publisher__underline-active">Add Stationery</div>
-      <div class="m-4 Publisher__underline">Add Books</div>
-      <div class="m-4 Publisher__underline">Add Govt Books</div>
+      <div
+        @click="activateTab(1)"
+        class="m-4 Publisher__underline"
+        :class="{'Publisher__underline-active': activeTab === 1 }"
+      >Add Stationery</div>
+      <div
+        @click="activateTab(2)"
+        class="m-4 Publisher__underline"
+        :class="{'Publisher__underline-active': activeTab === 2 }"
+      >Add Books</div>
+      <div
+        @click="activateTab(3)"
+        class="m-4 Publisher__underline"
+        :class="{'Publisher__underline-active': activeTab === 3 }"
+      >Add Govt Books</div>
     </div>
 
-    <StationeryList />
-    <GeneralBooks/>
-    <GovtBooks/>
-
+    <StationeryList v-if="activeTab === 1" />
+    <GeneralBooks v-if="activeTab === 2" />
+    <GovtBooks v-if="activeTab === 3" />
   </div>
 </template>
 
 <script>
-import StationeryList from '@/components/Publishers/StationeryList.vue'
-import GeneralBooks from '@/components/Publishers/GeneralBooks.vue'
-import GovtBooks from '@/components/Publishers/GovtBooks.vue'
+import StationeryList from "@/components/Publishers/StationeryList.vue";
+import GeneralBooks from "@/components/Publishers/GeneralBooks.vue";
+import GovtBooks from "@/components/Publishers/GovtBooks.vue";
 
 export default {
-
   components: {
     StationeryList,
     GeneralBooks,
-    GovtBooks
+    GovtBooks,
   },
 
   data() {
     return {
-      fields: [
-        {
-          key: "last_name",
-          sortable: true
-        },
-        {
-          key: "first_name",
-          sortable: false
-        },
-        {
-          key: "age",
-          label: "Person age",
-          sortable: true
-        },
-        {
-          key: "last_names",
-          label: "Person age",
-          sortable: false
-        }
-      ],
-      items: [
-        {
-          isActive: true,
-          age: 20,
-          first_name: "Dickerson",
-          last_name: "Macdonald",
-          last_names: "Wilson"
-        },
-        {
-          isActive: true,
-          age: 40,
-          first_name: "Dickerson",
-          last_name: "Macdonald",
-          last_names: "Wilson"
-        },
-        {
-          isActive: true,
-          age: 40,
-          first_name: "Dickerson",
-          last_name: "Macdonald",
-          last_names: "Wilson"
-        },
-        {
-          isActive: true,
-          age: 40,
-          first_name: "Dickerson",
-          last_name: "Macdonald",
-          last_names: "Wilson"
-        },
-        {
-          isActive: true,
-          age: 40,
-          first_name: "Dickerson",
-          last_name: "Macdonald",
-          last_names: "Wilson"
-        },
-        {
-          isActive: true,
-          age: 40,
-          first_name: "Dickerson",
-          last_name: "Macdonald",
-          last_names: "Wilson"
-        },
-        {
-          isActive: true,
-          age: 40,
-          first_name: "Dickerson",
-          last_name: "Macdonald",
-          last_names: "Wilson"
-        },
-        {
-          isActive: true,
-          age: 40,
-          first_name: "Dickerson",
-          last_name: "Macdonald",
-          last_names: "Wilson"
-        }
-      ]
+      activeTab: 1,
     };
-  }
+  },
+
+  methods: {
+    activateTab(data) {
+      this.activeTab = data;
+    },
+  },
 };
 </script>
 

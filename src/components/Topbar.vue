@@ -3,7 +3,7 @@
     <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
     <b-collapse id="nav-collapse" is-nav>
-      <b-navbar-nav>
+      <b-navbar-nav style="cursor: pointer" to="/publishers"    >
         <img class="Topbar__logo" src="../assets/logo.png" alt />
       </b-navbar-nav>
 

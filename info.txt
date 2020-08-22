@@ -13,6 +13,7 @@ ADD a delete confirmation modal in schools and companies
 remove in-line CSS
 
 
+Pagination - to All tables - SHOW MORE (Add 20 more in the list.)
 Store Token in Local store - Destroy on close.
 Generate random Token on login.
 Make All routes Secure, except login.
