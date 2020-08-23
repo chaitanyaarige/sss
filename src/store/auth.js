@@ -1,7 +1,7 @@
 export default {
   namespaced: true,
   state: {
-    isLoggedIn: true
+    isLoggedIn: false
   },
   getters: {
     isLoggedIn: state => state.isLoggedIn

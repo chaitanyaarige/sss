@@ -9,6 +9,7 @@ export default ({
         manufacturer: 'Kangaroo',
         pre_gst: 12,
         post_gst: 0,
+        qty: 10,
         unit_price: 12
       },
       {
@@ -18,6 +19,7 @@ export default ({
         manufacturer: 'Kangaroo',
         pre_gst: 12,
         post_gst: 0,
+        qty: 10,
         unit_price: 24
       }
     ]
@@ -36,6 +38,7 @@ export default ({
       state.stationery[uniqueId].manufacturer = data.manufacturer
       state.stationery[uniqueId].pre_gst = data.pre_gst
       state.stationery[uniqueId].unit_price = data.unit_price
+      state.stationery[uniqueId].qty = data.qty
       state.stationery[uniqueId].post_gst = data.post_gst
     },
     addStationery(state, data) {
