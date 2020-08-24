@@ -16,11 +16,37 @@
   &__second-container {
     display: flex;
     padding-top: 20px;
-    border-top: 2px dotted lightgray;
   }
 
   &__third-container {
+    border-top: 2px dotted lightgray;
     padding-bottom: 100px;
+  }
+
+  &__edit-button {
+    border: 1px solid;
+    padding: 0px 20px;
+    vertical-align: middle;
+    border-color: #f18f90;
+    color: black;
+    cursor: pointer;
+    height: 25px;
+    line-height: 1;
+    user-select: none;
+    background-color: transparent;
+  }
+
+  &__first-row {
+    display: flex;
+    margin-right: 40px;
+    min-width: 350px;
+  }
+
+  &__multiselect-label {
+    margin-top: 18px;
+    display: flex;
+    margin-right: 40px;
+    min-width: 350px;
   }
 
   &__input-fields-deep {
@@ -45,9 +71,9 @@
   }
 
   &__sub-container-two {
-    max-width: 500px;
     margin-left: 12px;
     margin-top: 10px;
+    display: flex;
     margin-bottom: 30px;
   }
 

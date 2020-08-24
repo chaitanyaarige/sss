@@ -1,50 +1,19 @@
 <template>
   <div class="Schools__main-container">
-    <div class="Schools__first-container">
-      <div class="Schools__main-title">{{editForm ? "Edit" : "Add"}} School Data</div>
-      <div class="Schools__toggle-form" @click="toggleShowForm()">
-        <svg
-          v-if="!showForm"
-          width="25px"
-          height="25px"
-          viewBox="0 0 16 16"
-          class="bi bi-plus-circle-fill"
-          :fill="leftColor"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4a.5.5 0 0 0-1 0v3.5H4a.5.5 0 0 0 0 1h3.5V12a.5.5 0 0 0 1 0V8.5H12a.5.5 0 0 0 0-1H8.5V4z"
-          />
-        </svg>
-
-        <svg
-          v-if="showForm"
-          width="25px"
-          height="25px"
-          viewBox="0 0 16 16"
-          class="bi bi-dash-circle-fill"
-          :fill="leftColor"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM4 7.5a.5.5 0 0 0 0 1h8a.5.5 0 0 0 0-1H4z"
-          />
-        </svg>
-      </div>
-    </div>
-
     <div v-if="showForm" class="Schools__sub-container">
       <div class="Schools__second-row">
         <b-container>
           <b-row>
             <b-col cols="4">
-              <label style="display: block; text-align: left;" for="text">dfdfjd</label>
+              <label style="display: block; text-align: left;" for="text"
+                >dfdfjd</label
+              >
               <b-form-input placeholder="Enter your name"></b-form-input>
             </b-col>
             <b-col cols="4">
-              <label style="display: block; text-align: left;" for="text">dfdfjd</label>
+              <label style="display: block; text-align: left;" for="text"
+                >dfdfjd</label
+              >
               <b-form-input placeholder="Enter your name"></b-form-input>
             </b-col>
           </b-row>
@@ -52,16 +21,20 @@
       </div>
       <div class="Schools__second-row">
         <div class="Schools__button">
-          <b-button @click="submit()" variant="outline-secondary">Submit</b-button>
+          <b-button @click="submit()" variant="outline-secondary"
+            >Submit</b-button
+          >
         </div>
         <div class="Schools__button">
-          <b-button @click="clearData" squared variant="outline-secondary">Clear</b-button>
+          <b-button @click="clearData" squared variant="outline-secondary"
+            >Clear</b-button
+          >
         </div>
       </div>
     </div>
 
     <div class="Schools__second-container">
-      <div class="Schools__main-title">Edit School Data</div>
+      <div class="Schools__main-title">Edit Stock Quantity</div>
       <div class="Schools__toggle-form">
         <svg
           width="25px"
@@ -84,55 +57,73 @@
     </div>
 
     <div class="Schools__sub-container-two">
-      <div class="Schools__first-row">
+      <div class="Schools__multiselect-label">
         <multiselect
-          v-model="newSchool.name"
+          v-model="newstationery.name"
           track-by="id"
           :searchable="true"
-          :options="schoolList"
-          label="name"
+          :options="stationery"
+          label="prod_code"
         ></multiselect>
+      </div>
+      <div class="Schools__first-row">
+        <div class="Schools__input-fields">
+          <label for="address">Quantity</label>
+          <input
+            class="Schools__input-fields-deep"
+            type="text"
+            name="address"
+            v-model="newstationery.unit_price"
+          />
+        </div>
+      </div>
+      <div class="Schools__first-row">
+        <div class="Schools__multiselect-label">
+          <div class="Schools__edit-button">Save</div>
+        </div>
       </div>
     </div>
 
-    <div class="Schools__third-container">
-      <div class="Schools__main-title">School Data</div>
-      <BuyersTable :dataList="schoolList" @editData="editData" @deleteData="deleteData" />
+    <div class="Schools__third-container pt-4">
+      <div class="Schools__main-title">Stationery Data</div>
+      <PublisherTable :dataList="stationery" @editData="editData" />
     </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import BuyersTable from "@/components/BuyersTable.vue";
+import PublisherTable from "@/components/PublisherTable.vue";
 
 export default {
-  name: "Schools",
+  name: "StationerystockIn",
 
   data() {
     return {
       showForm: false,
       editForm: false,
-      newSchool: {
-        id: null,
-        name: "",
-        address: "",
-        city: "",
-        phone: null,
-      },
+      newstationery: {
+        prod_code: "",
+        prod_name: "",
+        manufacturer: "",
+        qty: "",
+        pre_gst: null,
+        post_gst: null,
+        unit_price: null
+      }
     };
   },
 
   components: {
-    BuyersTable,
+    PublisherTable
   },
 
   computed: {
     ...mapState({
-      leftColor: (state) => state.leftColor,
-      rightColor: (state) => state.rightColor,
-      schoolList: (state) => state.schoolList.schools,
-    }),
+      leftColor: state => state.leftColor,
+      rightColor: state => state.rightColor,
+      stationery: state => state.stationery.stationery
+    })
   },
 
   methods: {
@@ -140,44 +131,41 @@ export default {
       this.showForm = !this.showForm;
     },
     clearData() {
-      this.newSchool.id = null;
-      this.newSchool.name = "";
-      this.newSchool.address = "";
-      this.newSchool.phone = "";
-      this.newSchool.city = "";
+      this.newstationery.id = null;
+      this.newstationery.name = "";
+      this.newstationery.address = "";
+      this.newstationery.phone = "";
+      this.newstationery.city = "";
       this.editForm = false;
     },
     editData(data) {
       const { name, address, city, phone, id } = data;
-      this.newSchool.name = name;
-      this.newSchool.id = id;
-      this.newSchool.address = address;
-      this.newSchool.city = city;
-      this.newSchool.phone = phone;
+      this.newstationery.name = name;
+      this.newstationery.id = id;
+      this.newstationery.address = address;
+      this.newstationery.city = city;
+      this.newstationery.phone = phone;
       this.editForm = true;
       this.showForm = true;
       document.body.scrollTop = 0; // For Safari
       document.documentElement.scrollTop = 0;
     },
     submit() {
-      if (!this.newSchool.name && !this.newSchool.phone) return;
+      if (!this.newstationery.name && !this.newstationery.phone) return;
       if (!this.editForm) {
         // remove below code before sending to DB
-        const ids = this.schoolList.map((item) => item.id);
+        const ids = this.stationery.map(item => item.id);
         const sorted = ids.sort((a, b) => a - b);
         const highestId = sorted.length - 1;
-        this.newSchool.id = sorted[highestId] + 1;
-        this.$store.commit("schoolList/addSchool", this.newSchool);
+        this.newstationery.id = sorted[highestId] + 1;
+        this.$store.commit("schoolList/addSchool", this.newstationery);
       } else {
-        this.$store.commit("schoolList/editSchool", this.newSchool);
+        this.$store.commit("schoolList/editSchool", this.newstationery);
       }
       this.toggleShowForm();
       this.editForm = false;
-    },
-    deleteData() {
-      this.$store.commit("schoolList/deleteSchool", this.newSchool);
-    },
-  },
+    }
+  }
 };
 </script>
 
