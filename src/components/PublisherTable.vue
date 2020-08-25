@@ -16,8 +16,8 @@
       <div class="BuyersTable__table-heading BuyersTable__table-heading-phone">
         Unit Price
       </div>
-      <div style="display: none" class="BuyersTable__table-heading BuyersTable__table-heading-phone">
-        Unit Price
+      <div v-if="stockin" class="BuyersTable__table-heading BuyersTable__table-heading-phone">
+        Quantity
       </div>
       <div
         class="BuyersTable__table-heading BuyersTable__table-heading-actions"
@@ -48,6 +48,9 @@
       <div class="BuyersTable__table-content BuyersTable__table-content-phone">
         {{ item.unit_price }}
       </div>
+      <div v-if="stockin" class="BuyersTable__table-content BuyersTable__table-content-phone">
+        {{ item.qty }}
+      </div>
       <div
         class="BuyersTable__table-content BuyersTable__table-content-actions"
       >
@@ -71,7 +74,7 @@
 export default {
   name: "PublishersTable",
 
-  props: ["dataList"],
+  props: ["dataList", "stockin"],
 
   methods: {
     editData(item) {
