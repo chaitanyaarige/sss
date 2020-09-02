@@ -64,7 +64,7 @@ export default {
 
   computed: {
     currentTime() {
-      return new Date();
+      return new Date().toDateString();
     },
     currentYear() {
       return new Date().getFullYear();

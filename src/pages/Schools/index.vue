@@ -121,11 +121,7 @@
 
     <div class="Schools__third-container">
       <div class="Schools__main-title">School Data</div>
-      <BuyersTable
-        :dataList="schoolList"
-        @editData="editData"
-        @deleteData="deleteData"
-      />
+      <BuyersTable :dataList="schoolList" @editData="editData" @deleteData="deleteData" />
     </div>
   </div>
 </template>
@@ -163,7 +159,21 @@ export default {
     }),
   },
 
+  mounted() {
+    this.getOfficialScenarios()
+  },
+
   methods: {
+    getOfficialScenarios() {
+      this.$axios
+        .get("/schools")
+        .then((response) => {
+          this.newSchool = response.data;
+        })
+        .catch((error) => {
+          this.errors.push(error);
+        });
+    },
     toggleShowForm() {
       this.showForm = !this.showForm;
     },
