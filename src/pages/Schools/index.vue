@@ -165,14 +165,7 @@ export default {
 
   methods: {
     getOfficialScenarios() {
-      this.$axios
-        .get("/schools")
-        .then((response) => {
-          this.newSchool = response.data;
-        })
-        .catch((error) => {
-          this.errors.push(error);
-        });
+      this.$store.dispatch("schoolList/getSchools")
     },
     toggleShowForm() {
       this.showForm = !this.showForm;

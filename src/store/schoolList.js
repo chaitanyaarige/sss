@@ -1,47 +1,28 @@
+import axios from 'axios';
+
 export default ({
   namespaced: true,
   state: {
-    schools: [
-      {
-      id:1,
-      name: 'Zilla parishad High School',
-      address: 'Patancheru',
-      city: 'Hyderabad',
-      phone: 123
-    },
-    {
-      id:2,
-      name: 'Jyothi Vidyalaya School',
-      address: 'bhel hyderabad',
-      city: 'Any Indian city',
-      phone: 123
-    },
-    {
-      id:3,
-      name: 'Jyothi Vidyalaya School',
-      address: 'bhel hyderabad',
-      city: 'Any Indian city',
-      phone: 123
-    },
-    {
-      id:8,
-      name: 'Jyothi Vidyalaya School',
-      address: 'bhel hyderabad',
-      city: 'Any Indian city',
-      phone: 123
-    }
-  ],
+    schools: [],
   },
   getters: {
     schools: state => state.schools,
   },
   actions: {
-    editSchool({commit}, data){
-      console.log(data, 'disp')
-      commit('editSchool', data)
+    getSchools({commit, state, dispatch}){
+      axios({method: 'get', url: 'http://localhost:5200/api/schools'})
+      .then(response => {
+        commit('assignSchoolsData', response)
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     }
   },
   mutations: {
+    assignSchoolsData(state, data) {
+      state.schools = data
+    },
     editSchool(state, data) {
       let uniqueId = state.schools.findIndex(item => item.id === data.id)
       state.schools[uniqueId].name = data.name
