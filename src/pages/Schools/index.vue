@@ -108,21 +108,36 @@
     </div>
 
     <div class="Schools__sub-container-two">
-      <div class="Schools__first-row">
+      <div v-if="schoolList" class="Schools__first-row">
         <multiselect
-          v-model="newSchool.name"
+          v-model="editSchool.name"
+          @input='editFormMethod'
           track-by="id"
           :searchable="true"
           :options="schoolList"
-          label="name"
+          :label="'name'"
         ></multiselect>
       </div>
     </div>
 
     <div class="Schools__third-container">
       <div class="Schools__main-title">School Data</div>
-      <BuyersTable :dataList="schoolList" @editData="editData" @deleteData="deleteData" />
+      <BuyersTable v-if='schoolList' :dataList="schoolList" @editData="editData" @deleteData="deleteData" />
     </div>
+    <b-modal
+      v-model="showDeleteConfirm"
+      title="Do You  Want to Delete?"
+      button-size="sm"
+      :header-bg-variant="'light'"
+    >
+      <p class="my-2">{{newSchool.name}}</p>
+      <template v-slot:modal-footer>
+        <div class="col">
+          <b-button variant="danger" size="sm" class="float-right" @click="confirmDelete()">OKAY</b-button>
+        </div>
+        <div class="col-5"></div>
+      </template>
+    </b-modal>
   </div>
 </template>
 
@@ -137,6 +152,8 @@ export default {
     return {
       showForm: false,
       editForm: false,
+      showDeleteConfirm: false,
+      editSchool: {},
       newSchool: {
         id: null,
         name: "",
@@ -160,12 +177,12 @@ export default {
   },
 
   mounted() {
-    this.getOfficialScenarios()
+    this.getAllSchoolsData();
   },
 
   methods: {
-    getOfficialScenarios() {
-      this.$store.dispatch("schoolList/getSchools")
+    getAllSchoolsData() {
+      this.$store.dispatch("schoolList/getSchools");
     },
     toggleShowForm() {
       this.showForm = !this.showForm;
@@ -177,6 +194,11 @@ export default {
       this.newSchool.phone = "";
       this.newSchool.city = "";
       this.editForm = false;
+    },
+    editFormMethod() {
+      this.editForm   =true,
+      this.showForm = true
+      this.newSchool = Object.assign({}, this.editSchool.name);
     },
     editData(data) {
       const { name, address, city, phone, id } = data;
@@ -194,19 +216,33 @@ export default {
       if (!this.newSchool.name && !this.newSchool.phone) return;
       if (!this.editForm) {
         // remove below code before sending to DB
-        const ids = this.schoolList.map((item) => item.id);
-        const sorted = ids.sort((a, b) => a - b);
-        const highestId = sorted.length - 1;
-        this.newSchool.id = sorted[highestId] + 1;
-        this.$store.commit("schoolList/addSchool", this.newSchool);
+        // const ids = this.schoolList.map((item) => item.id);
+        // const sorted = ids.sort((a, b) => a - b);
+        // const highestId = sorted.length - 1;
+        // this.newSchool.id = sorted[highestId] + 1;
+
+        this.$store.dispatch("schoolList/addSchool", this.newSchool);
       } else {
-        this.$store.commit("schoolList/editSchool", this.newSchool);
+        this.$store.dispatch("schoolList/editSchool", this.newSchool);
       }
       this.toggleShowForm();
       this.editForm = false;
     },
-    deleteData() {
-      this.$store.commit("schoolList/deleteSchool", this.newSchool);
+    confirmDelete() {
+      this.$store
+        .dispatch("schoolList/deleteSchool", this.newSchool)
+        .then((response) => {
+          this.showDeleteConfirm = false;
+          this.newSchool = {}
+        })
+        .catch((error) => {
+          this.showDeleteConfirm = false;
+          console.log(error);
+        });
+    },
+    deleteData(data) {
+      this.showDeleteConfirm = !this.showDeleteConfirm;
+      this.newSchool = Object.assign({}, this.newSchool, data);
     },
   },
 };
