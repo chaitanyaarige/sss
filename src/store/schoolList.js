@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export default ({
   namespaced: true,
   state: {
@@ -10,7 +8,8 @@ export default ({
   },
   actions: {
     getSchools({commit, state, dispatch}){
-      axios({method: 'get', url: 'http://localhost:5200/api/schools'})
+      // const allParams = Object.assign(params || {}, lang)
+      return dispatch('performRequest', {path: 'schools', method: 'get'}, { root: true })
       .then(response => {
         commit('assignSchoolsData', response)
       })

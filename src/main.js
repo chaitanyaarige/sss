@@ -4,9 +4,7 @@ import router from './router'
 import store from './store'
 import { BootstrapVue, BootstrapVueIcons, BIcon } from 'bootstrap-vue'
 import Multiselect from 'vue-multiselect'
-import axios from './plugins/axios';
 
-Vue.use(axios)
 Vue.config.productionTip = false
 Vue.use(BootstrapVue, BootstrapVueIcons, BIcon)
 Vue.component('multiselect', Multiselect)
@@ -29,7 +27,4 @@ new Vue({
   router,
   store,
   render: function (h) { return h(App) },
-  created() {
-    console.log(this.$axios ? 'axios plugin works' : 'axios plugin does not work');
-  }
 }).$mount('#app')

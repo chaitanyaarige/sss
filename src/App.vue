@@ -22,6 +22,10 @@ export default {
     Login
   },
 
+  created() {
+    this.$store.dispatch('setAppUrl')
+  },
+
   computed: {
     ...mapState({
       isLoggedIn: (state) => state.auth.isLoggedIn,
