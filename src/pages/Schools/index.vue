@@ -123,7 +123,7 @@
     <div class="Schools__third-container">
       <div class="Schools__main-title">School Data</div>
       <div v-if="!schoolList" class="Schools__loadingRed">Loading.....</div>
-      <BuyersTable v-if='schoolList' :dataList="schoolList" @editData="editData" @deleteData="deleteData" />
+      <BuyersTable v-if='filteredSchoolList' :dataList="filteredSchoolList" @editData="editData" @deleteData="deleteData" />
     </div>
     <div v-if="showDeleteConfirm">
       <DeleteConfirmModal @confirmDelete="confirmDelete" :deleteName="newSchool"/>
@@ -166,6 +166,11 @@ export default {
       rightColor: (state) => state.rightColor,
       schoolList: (state) => state.schoolList.schools,
     }),
+    filteredSchoolList() {
+      return this.schoolList.sort( (a, b) => {
+        return a.id - b.id;
+      });
+    }
   },
 
   mounted() {

@@ -123,7 +123,7 @@
     <div class="Company__third-container">
       <div class="Company__main-title">Company Data</div>
       <div v-if="!companyList" class="Company__loadingRed">Loading.....</div>
-       <BuyersTable v-if='companyList' :dataList="companyList" @editData="editData" @deleteData="deleteData" />
+       <BuyersTable v-if='filteredCompanyList' :dataList="filteredCompanyList" @editData="editData" @deleteData="deleteData" />
       </div>
     <div v-if="showDeleteConfirm">
       <DeleteConfirmModal @confirmDelete="confirmDelete" :deleteName="newCompany"/>
@@ -165,6 +165,11 @@ export default {
       leftColor: (state) => state.leftColor,
       companyList: (state) => state.companyList.companies,
     }),
+    filteredCompanyList() {
+      return this.companyList.sort( (a, b) => {
+        return a.id - b.id;
+      });
+    }
   },
 
   mounted() {
