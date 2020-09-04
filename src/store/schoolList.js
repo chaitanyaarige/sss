@@ -50,20 +50,6 @@ export default ({
   mutations: {
     assignSchoolsData(state, data) {
       state.schools = data
-    },
-    // editSchool(state, data) {
-    //   let uniqueId = state.schools.findIndex(item => item.id === data.id)
-    //   state.schools[uniqueId].name = data.name
-    //   state.schools[uniqueId].address = data.address
-    //   state.schools[uniqueId].city = data.city
-    //   state.schools[uniqueId].phone = data.phone
-    // },
-    // addSchool(state, data) {
-    //   state.schools.push(data)
-    // },
-    // deleteSchool(state, data) {
-    //   let uniqueId = state.schools.findIndex(item => item.id === data.id)
-    //   state.schools.splice(uniqueId, 1)
-    // }
+    }
   }
 })

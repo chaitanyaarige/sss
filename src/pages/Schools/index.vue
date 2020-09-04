@@ -122,28 +122,19 @@
 
     <div class="Schools__third-container">
       <div class="Schools__main-title">School Data</div>
+      <div v-if="!schoolList" class="Schools__loadingRed">Loading.....</div>
       <BuyersTable v-if='schoolList' :dataList="schoolList" @editData="editData" @deleteData="deleteData" />
     </div>
-    <b-modal
-      v-model="showDeleteConfirm"
-      title="Do You  Want to Delete?"
-      button-size="sm"
-      :header-bg-variant="'light'"
-    >
-      <p class="my-2">{{newSchool.name}}</p>
-      <template v-slot:modal-footer>
-        <div class="col">
-          <b-button variant="danger" size="sm" class="float-right" @click="confirmDelete()">OKAY</b-button>
-        </div>
-        <div class="col-5"></div>
-      </template>
-    </b-modal>
+    <div v-if="showDeleteConfirm">
+      <DeleteConfirmModal @confirmDelete="confirmDelete" :deleteName="newSchool"/>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
 import BuyersTable from "@/components/BuyersTable.vue";
+import DeleteConfirmModal from "@/components/DeleteConfirmModal.vue";
 
 export default {
   name: "Schools",
@@ -166,6 +157,7 @@ export default {
 
   components: {
     BuyersTable,
+    DeleteConfirmModal
   },
 
   computed: {
@@ -228,7 +220,8 @@ export default {
       this.toggleShowForm();
       this.editForm = false;
     },
-    confirmDelete() {
+    confirmDelete(data) {
+      if(data) {
       this.$store
         .dispatch("schoolList/deleteSchool", this.newSchool)
         .then((response) => {
@@ -237,11 +230,17 @@ export default {
         })
         .catch((error) => {
           this.showDeleteConfirm = false;
+          this.newSchool = {}
           console.log(error);
         });
+      }
+      else {
+        this.newSchool = null
+        this.showDeleteConfirm = false
+      }
     },
     deleteData(data) {
-      this.showDeleteConfirm = !this.showDeleteConfirm;
+      this.showDeleteConfirm = true;
       this.newSchool = Object.assign({}, this.newSchool, data);
     },
   },

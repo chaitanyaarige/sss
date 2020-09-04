@@ -117,6 +117,8 @@ export default {
     return {
       showForm: false,
       editForm: false,
+      showDeleteConfirm: false,
+      editCompany: {},
       newCompany: {
         id: null,
         name: "",
@@ -134,7 +136,6 @@ export default {
   computed: {
     ...mapState({
       leftColor: (state) => state.leftColor,
-      rightColor: (state) => state.rightColor,
       companyList: (state) => state.companyList.companies,
     }),
   },

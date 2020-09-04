@@ -1,60 +1,53 @@
-export default {
+export default ({
   namespaced: true,
   state: {
-    companies: [
-      {
-        id: 1,
-        name: "Zilla parishad High Company",
-        address: "Patancheru",
-        city: "Hyderabad",
-        phone: 123
-      },
-      {
-        id: 2,
-        name: "Jyothi Vidyalaya Company",
-        address: "bhel hyderabad",
-        city: "Any Indian city",
-        phone: 123
-      },
-      {
-        id: 3,
-        name: "Jyothi Vidyalaya Company",
-        address: "bhel hyderabad",
-        city: "Any Indian city",
-        phone: 123
-      },
-      {
-        id: 8,
-        name: "Jyothi Vidyalaya Company",
-        address: "bhel hyderabad",
-        city: "Any Indian city",
-        phone: 123
-      }
-    ]
+    companies: null,
   },
   getters: {
-    companies: state => state.companies
+    companies: state => state.companies,
   },
   actions: {
-    editCompany({ commit }, data) {
-      console.log(data, "disp");
-      commit("editCompany", data);
+    getCompanies({ commit, dispatch }) {
+      return dispatch('performRequest', { path: 'companies', method: 'get' }, { root: true })
+        .then(response => {
+          commit('assignCompanyData', response.companies)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    addCompany({ dispatch }, data) {
+      data.created_at = new Date().toISOString();
+      return dispatch('performRequest', { path: `companies`, method: 'post', data: data }, { root: true })
+        .then(res => {
+          dispatch('getCompanies')
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    editCompany({ dispatch }, data) {
+      return dispatch('performRequest', { path: `companies/${data.id}`, method: 'patch', data: data }, { root: true })
+        .then(response => {
+          dispatch('getCompanies')
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    deleteCompany({ dispatch }, data) {
+      return dispatch('performRequest', { path: `companies/${data.id}`, method: 'delete'}, { root: true })
+        .then(response => {
+          dispatch('getCompanies')
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   },
   mutations: {
-    editCompany(state, data) {
-      let uniqueId = state.companies.findIndex(item => item.id === data.id);
-      state.companies[uniqueId].name = data.name;
-      state.companies[uniqueId].address = data.address;
-      state.companies[uniqueId].city = data.city;
-      state.companies[uniqueId].phone = data.phone;
-    },
-    addCompany(state, data) {
-      state.companies.push(data);
-    },
-    deleteCompany(state, data) {
-      let uniqueId = state.companies.findIndex(item => item.id === data.id);
-      state.companies.splice(uniqueId, 1);
+    assignCompanyData(state, data) {
+      state.companies = data
     }
   }
-};
+})
