@@ -10,7 +10,7 @@ export default ({
     getCompanies({ commit, dispatch }) {
       return dispatch('performRequest', { path: 'companies', method: 'get' }, { root: true })
         .then(response => {
-          commit('assignCompanyData', response.companies)
+          commit('assignCompanyData', response.company)
         })
         .catch((error) => {
           console.log(error);
