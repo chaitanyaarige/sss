@@ -171,7 +171,7 @@ export default {
 
   methods: {
     routemeto(data) {
-      this.$router.push({ path: `/${data}` });
+      this.$router.push({ path: `/${data}` }).catch(err => {});
     },
     onOver(data) {
       switch (data) {

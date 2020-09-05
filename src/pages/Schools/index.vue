@@ -149,6 +149,7 @@
 import { mapState, mapGetters } from "vuex";
 import BuyersTable from "@/components/BuyersTable.vue";
 import DeleteConfirmModal from "@/components/DeleteConfirmModal.vue";
+import{BButton}  from "bootstrap-vue"
 
 export default {
   name: "Schools",
@@ -170,7 +171,8 @@ export default {
 
   components: {
     BuyersTable,
-    DeleteConfirmModal
+    DeleteConfirmModal,
+    BButton
   },
 
   computed: {

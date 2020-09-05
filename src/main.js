@@ -4,17 +4,12 @@ import router from './router'
 import store from './store'
 import Multiselect from 'vue-multiselect'
 
-
 import { VBTooltip } from 'bootstrap-vue'
 Vue.directive('b-tooltip', VBTooltip)
 
 Vue.config.productionTip = false
 
 Vue.component('multiselect', Multiselect)
-
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'bootstrap-vue/dist/bootstrap-vue.min.css'
-import 'bootstrap-vue/dist/bootstrap-vue-icons.min.css'
 import "vue-multiselect/dist/vue-multiselect.min.css"
 import "./assets/multiselect.scss";
 
