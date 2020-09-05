@@ -130,7 +130,7 @@
       <div class="Company__main-title">Company Data</div>
       <div v-if="!companyList" class="Company__loadingRed">Loading.....</div>
       <BuyersTable
-        v-if="filteredCompanyList"
+        v-if="companyList"
         :dataList="filteredCompanyList"
         @editData="editData"
         @deleteData="deleteData"

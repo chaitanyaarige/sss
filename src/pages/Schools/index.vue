@@ -130,7 +130,7 @@
       <div class="Schools__main-title">School Data</div>
       <div v-if="!schoolList" class="Schools__loadingRed">Loading.....</div>
       <BuyersTable
-        v-if="filteredSchoolList"
+        v-if="schoolList"
         :dataList="filteredSchoolList"
         @editData="editData"
         @deleteData="deleteData"
@@ -246,17 +246,15 @@ export default {
           .dispatch("schoolList/deleteSchool", this.newSchool)
           .then(response => {
             this.$store.commit("toggleDeleteConfirm", false);
-            this.newSchool = {};
           })
           .catch(error => {
             this.$store.commit("toggleDeleteConfirm", false);
-            this.newSchool = {};
             console.log(error);
           });
       } else {
-        this.newSchool = null;
         this.$store.commit("toggleDeleteConfirm", false);
       }
+      this.clearData();
     },
     deleteData(data) {
       this.$store.commit("toggleDeleteConfirm", true);

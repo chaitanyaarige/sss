@@ -32,7 +32,7 @@
       class="BuyersTable__table-container"
     >
       <div class="BuyersTable__table-content BuyersTable__table-content-id">
-        {{ item.id }}
+        {{ index+1 }}
       </div>
       <div class="BuyersTable__table-content BuyersTable__table-content-name">
         {{ item.prod_code }}

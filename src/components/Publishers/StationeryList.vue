@@ -106,7 +106,11 @@
 
     <div class="Schools__third-container">
       <div class="Schools__main-title">Stationery Data</div>
-      <PublisherTable :dataList="stationery" @editData="editData" @deleteData="deleteData" />
+      <div v-if="!stationery" class="Schools__loadingRed">Loading.....</div>
+      <PublisherTable v-if='stationery' :dataList="filteredStationery" @editData="editData" @deleteData="deleteData" />
+    </div>
+    <div v-if="showDeleteConfirm">
+      <DeleteConfirmModal @confirmDelete="confirmDelete" :deleteName="newstationery.prod_name"/>
     </div>
   </div>
 </template>
@@ -114,6 +118,7 @@
 <script>
 import { mapState, mapGetters } from "vuex";
 import PublisherTable from "@/components/PublisherTable.vue";
+import DeleteConfirmModal from "@/components/DeleteConfirmModal.vue";
 
 export default {
   name: "StationeryList",
@@ -135,6 +140,7 @@ export default {
 
   components: {
     PublisherTable,
+    DeleteConfirmModal
   },
 
   computed: {
@@ -142,10 +148,24 @@ export default {
       leftColor: (state) => state.leftColor,
       rightColor: (state) => state.rightColor,
       stationery: (state) => state.stationery.stationery,
+      showDeleteConfirm:   (state) => state.showDeleteConfirm,
     }),
+    filteredStationery()   {
+      return this.stationery ? this.stationery.sort((a, b) => {
+            return a.id - b.id;
+          })
+        : [];
+    }
+  },
+
+  mounted() {
+    this.getAllStationery();
   },
 
   methods: {
+    getAllStationery() {
+      this.$store.dispatch("stationery/getStationery");
+    },
     toggleShowForm() {
       this.showForm = !this.showForm;
     },
@@ -176,24 +196,36 @@ export default {
     submit() {
       if (!this.newstationery.prod_code && !this.newstationery.unit_price) return;
       if (!this.editForm) {
-        // remove below code before sending to DB
-        const ids = this.stationery.map((item) => item.id);
-        const sorted = ids.sort((a, b) => a - b);
-        const highestId = sorted.length - 1;
-        this.stationery.id = sorted[highestId] + 1;
-
-        this.$store.commit("stationery/addStationery", this.newstationery);
+        this.$store.dispatch("stationery/addStationery", this.newstationery);
       } else {
-        this.stationery.id = this.$store.commit(
+        this.stationery.id = this.$store.dispatch(
           "stationery/editStationery",
           this.newstationery
         );
       }
       this.toggleShowForm();
-      this.editForm = false;
+      this.clearData()
     },
-    deleteData() {
-      this.$store.commit("stationery/deleteStationery", this.stationery);
+    confirmDelete(data) {
+      if(data) {
+      this.$store
+        .dispatch("stationery/deleteStationery", this.newstationery)
+        .then((response) => {
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+        this.newstationery = {}
+        this.$store.commit('toggleDeleteConfirm', false)
+      }
+      else {
+        this.newstationery = null
+        this.$store.commit('toggleDeleteConfirm', false)
+      }
+    },
+    deleteData(data) {
+      this.$store.commit('toggleDeleteConfirm', true)
+      this.newstationery = Object.assign({}, this.newstationery, data);
     },
   },
 };
