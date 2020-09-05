@@ -1,7 +1,9 @@
 <template>
   <div class="Schools__main-container">
     <div class="Schools__first-container">
-      <div class="Schools__main-title">{{editForm ? "Edit" : "Add"}} School Data</div>
+      <div class="Schools__main-title">
+        {{ editForm ? "Edit" : "Add" }} School Data
+      </div>
       <div class="Schools__toggle-form" @click="toggleShowForm()">
         <svg
           v-if="!showForm"
@@ -76,10 +78,14 @@
           />
         </div>
         <div class="Schools__button">
-          <b-button @click="submit()" variant="outline-secondary">Submit</b-button>
+          <b-button @click="submit()" variant="outline-secondary"
+            >Submit</b-button
+          >
         </div>
         <div class="Schools__button">
-          <b-button @click="clearData" squared variant="outline-secondary">Clear</b-button>
+          <b-button @click="clearData" squared variant="outline-secondary"
+            >Clear</b-button
+          >
         </div>
       </div>
     </div>
@@ -111,7 +117,7 @@
       <div v-if="schoolList" class="Schools__first-row">
         <multiselect
           v-model="editSchool.name"
-          @input='editFormMethod'
+          @input="editFormMethod"
           track-by="id"
           :searchable="true"
           :options="schoolList"
@@ -123,10 +129,18 @@
     <div class="Schools__third-container">
       <div class="Schools__main-title">School Data</div>
       <div v-if="!schoolList" class="Schools__loadingRed">Loading.....</div>
-      <BuyersTable v-if='filteredSchoolList' :dataList="filteredSchoolList" @editData="editData" @deleteData="deleteData" />
+      <BuyersTable
+        v-if="filteredSchoolList"
+        :dataList="filteredSchoolList"
+        @editData="editData"
+        @deleteData="deleteData"
+      />
     </div>
     <div v-if="showDeleteConfirm">
-      <DeleteConfirmModal @confirmDelete="confirmDelete" :deleteName="newSchool"/>
+      <DeleteConfirmModal
+        @confirmDelete="confirmDelete"
+        :deleteName="newSchool.name"
+      />
     </div>
   </div>
 </template>
@@ -149,8 +163,8 @@ export default {
         name: "",
         address: "",
         city: "",
-        phone: null,
-      },
+        phone: null
+      }
     };
   },
 
@@ -161,15 +175,17 @@ export default {
 
   computed: {
     ...mapState({
-      leftColor: (state) => state.leftColor,
-      rightColor: (state) => state.rightColor,
-      showDeleteConfirm:   (state) => state.showDeleteConfirm,
-      schoolList: (state) => state.schoolList.schools,
+      leftColor: state => state.leftColor,
+      rightColor: state => state.rightColor,
+      showDeleteConfirm: state => state.showDeleteConfirm,
+      schoolList: state => state.schoolList.schools
     }),
     filteredSchoolList() {
-      return this.schoolList.sort( (a, b) => {
-        return a.id - b.id;
-      });
+      return this.schoolList
+        ? this.schoolList.sort((a, b) => {
+            return a.id - b.id;
+          })
+        : [];
     }
   },
 
@@ -193,8 +209,7 @@ export default {
       this.editForm = false;
     },
     editFormMethod() {
-      this.editForm   =true,
-      this.showForm = true
+      (this.editForm = true), (this.showForm = true);
       this.newSchool = Object.assign({}, this.editSchool.name);
     },
     editData(data) {
@@ -226,29 +241,28 @@ export default {
       this.editForm = false;
     },
     confirmDelete(data) {
-      if(data) {
-      this.$store
-        .dispatch("schoolList/deleteSchool", this.newSchool)
-        .then((response) => {
-          this.$commit('toggleDeleteConfirm', false)
-          this.newSchool = {}
-        })
-        .catch((error) => {
-          this.$commit('toggleDeleteConfirm', false)
-          this.newSchool = {}
-          console.log(error);
-        });
-      }
-      else {
-        this.newSchool = null
-          this.$commit('toggleDeleteConfirm', false)
+      if (data) {
+        this.$store
+          .dispatch("schoolList/deleteSchool", this.newSchool)
+          .then(response => {
+            this.$store.commit("toggleDeleteConfirm", false);
+            this.newSchool = {};
+          })
+          .catch(error => {
+            this.$store.commit("toggleDeleteConfirm", false);
+            this.newSchool = {};
+            console.log(error);
+          });
+      } else {
+        this.newSchool = null;
+        this.$store.commit("toggleDeleteConfirm", false);
       }
     },
     deleteData(data) {
-      this.$commit('toggleDeleteConfirm', true)
+      this.$store.commit("toggleDeleteConfirm", true);
       this.newSchool = Object.assign({}, this.newSchool, data);
-    },
-  },
+    }
+  }
 };
 </script>
 

@@ -8,7 +8,7 @@
     </template>
 
 
-    <p class="my-2">{{deleteName.name}}</p>
+    <p class="my-2">{{deleteName}}</p>
     <template v-slot:modal-footer>
       <div class="col">
         <b-button variant="outline-danger" size="sm" class="float-right" @click="confirmDelete()">OKAY</b-button>
@@ -30,7 +30,7 @@ export default {
 
   props: {
     deleteName: {
-      type: Object,
+      type: String,
       default: null
     },
   },
@@ -45,7 +45,6 @@ export default {
       this.$emit("confirmDelete", false);
     },
     confirmDelete() {
-      this.$commit('toggleDeleteConfirm', false)
       this.$emit("confirmDelete", true);
     },
   },

@@ -1,7 +1,9 @@
 <template>
   <div class="Company__main-container">
     <div class="Company__first-container">
-      <div class="Company__main-title">{{editForm ? "Edit" : "Add"}} Company Data</div>
+      <div class="Company__main-title">
+        {{ editForm ? "Edit" : "Add" }} Company Data
+      </div>
       <div class="Company__toggle-form" @click="toggleShowForm()">
         <svg
           v-if="!showForm"
@@ -76,10 +78,14 @@
           />
         </div>
         <div class="Company__button">
-          <b-button @click="submit()" variant="outline-secondary">Submit</b-button>
+          <b-button @click="submit()" variant="outline-secondary"
+            >Submit</b-button
+          >
         </div>
         <div class="Company__button">
-          <b-button @click="clearData" squared variant="outline-secondary">Clear</b-button>
+          <b-button @click="clearData" squared variant="outline-secondary"
+            >Clear</b-button
+          >
         </div>
       </div>
     </div>
@@ -111,7 +117,7 @@
       <div v-if="companyList" class="Company__first-row">
         <multiselect
           v-model="editCompany.name"
-          @input='editFormMethod'
+          @input="editFormMethod"
           track-by="id"
           :searchable="true"
           :options="companyList"
@@ -123,10 +129,18 @@
     <div class="Company__third-container">
       <div class="Company__main-title">Company Data</div>
       <div v-if="!companyList" class="Company__loadingRed">Loading.....</div>
-       <BuyersTable v-if='filteredCompanyList' :dataList="filteredCompanyList" @editData="editData" @deleteData="deleteData" />
-      </div>
+      <BuyersTable
+        v-if="filteredCompanyList"
+        :dataList="filteredCompanyList"
+        @editData="editData"
+        @deleteData="deleteData"
+      />
+    </div>
     <div v-if="showDeleteConfirm">
-      <DeleteConfirmModal @confirmDelete="confirmDelete" :deleteName="newCompany"/>
+      <DeleteConfirmModal
+        @confirmDelete="confirmDelete"
+        :deleteName="newCompany.name"
+      />
     </div>
   </div>
 </template>
@@ -143,15 +157,14 @@ export default {
     return {
       showForm: false,
       editForm: false,
-      showDeleteConfirm: false,
       editCompany: {},
       newCompany: {
         id: null,
         name: "",
         address: "",
         city: "",
-        phone: null,
-      },
+        phone: null
+      }
     };
   },
 
@@ -162,13 +175,14 @@ export default {
 
   computed: {
     ...mapState({
-      leftColor: (state) => state.leftColor,
-      companyList: (state) => state.companyList.companies,
+      leftColor: state => state.leftColor,
+      companyList: state => state.companyList.companies,
+      showDeleteConfirm: state => state.showDeleteConfirm,
     }),
     filteredCompanyList() {
-      return this.companyList.sort( (a, b) => {
+      return this.companyList ? (this.companyList.sort((a, b) => {
         return a.id - b.id;
-      });
+      })) : []
     }
   },
 
@@ -192,8 +206,7 @@ export default {
       this.editForm = false;
     },
     editFormMethod() {
-      this.editForm   =true,
-      this.showForm = true
+      (this.editForm = true), (this.showForm = true);
       this.newCompany = Object.assign({}, this.editCompany.name);
     },
     editData(data) {
@@ -219,26 +232,25 @@ export default {
       this.editForm = false;
     },
     confirmDelete(data) {
-      if(data) {
-      this.$store
-        .dispatch("companyList/deleteCompany", this.newCompany)
-        .then((response) => {
-          this.showDeleteConfirm = false;
-          this.newCompany = {}
-        })
-        .catch((error) => {
-          this.showDeleteConfirm = false;
-          this.newCompany = {}
-          console.log(error);
-        });
-      }
-      else {
-        this.newCompany = null
-        this.showDeleteConfirm = false
+      if (data) {
+        this.$store
+          .dispatch("companyList/deleteCompany", this.newCompany)
+          .then(response => {
+            this.$store.commit("toggleDeleteConfirm", false);
+            this.newCompany = {};
+          })
+          .catch(error => {
+            this.$store.commit("toggleDeleteConfirm", false);
+            this.newCompany = {};
+            console.log(error);
+          });
+      } else {
+        this.newCompany = null;
+            this.$store.commit("toggleDeleteConfirm", false);
       }
     },
     deleteData(data) {
-      this.showDeleteConfirm = true;
+      this.$store.commit("toggleDeleteConfirm", true);
       this.newCompany = Object.assign({}, this.newCompany, data);
     }
   }
