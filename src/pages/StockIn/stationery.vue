@@ -15,7 +15,7 @@
         ></multiselect>
       </div>
       <div class="Schools__first-row">
-        <div class="Schools__input-fields">
+        <div v-if='newstationery' class="Schools__input-fields">
           <label for="address">Quantity</label>
           <input
             class="Schools__input-fields-deep"
