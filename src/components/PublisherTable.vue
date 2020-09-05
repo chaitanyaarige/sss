@@ -22,7 +22,7 @@
       <div
         class="BuyersTable__table-heading BuyersTable__table-heading-actions"
       >
-        Edit / Delete
+        Edit <span v-if="!stockin">/ Delete </span>
       </div>
     </div>
 
@@ -61,6 +61,7 @@
           <div class="BuyersTable__edit-button">Edit</div>
         </div>
         <div
+          v-if="!stockin"
           @click="deleteData(item)"
         class="BuyersTable__button-container">
           <div class="BuyersTable__delete-button">Delete</div>

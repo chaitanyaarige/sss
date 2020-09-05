@@ -5,7 +5,7 @@
     </div>
 
     <div class="Schools__sub-container-two">
-      <div class="Schools__multiselect-label">
+      <div v-if='stationery' class="Schools__multiselect-label">
         <multiselect
           v-model="newstationery"
           track-by="id"
@@ -15,19 +15,19 @@
         ></multiselect>
       </div>
       <div class="Schools__first-row">
-        <div class="Schools__input-fields">
+        <div v-if='newstationery' class="Schools__input-fields">
           <label for="address">Quantity</label>
           <input
             class="Schools__input-fields-deep"
             type="text"
             name="address"
-            v-model="newstationery.unit_price"
+            v-model="newstationery.quantity"
           />
         </div>
       </div>
       <div class="Schools__first-row">
         <div class="Schools__multiselect-label">
-          <div class="Schools__edit-button">Save</div>
+          <div @click="submit" class="Schools__edit-button">Save</div>
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@ export default {
   data() {
     return {
       editForm: false,
-      newstationery: {}
+      newstationery: null,
     };
   },
 
@@ -65,33 +65,33 @@ export default {
     })
   },
 
+  mounted() {
+    this.getAllStationery();
+  },
+
   methods: {
+    getAllStationery() {
+      this.$store.dispatch("stationery/getStationery");
+    },
     clearData() {
       this.newstationery = {}
       this.editForm = false;
     },
     editData(data) {
-      const { name, address, city, phone, id } = data;
-      this.newstationery.name = name;
+      const { prod_code, prod_name, manufacturer, pre_gst, post_gst, unit_price, id } = data;
+      this.newstationery.prod_code = prod_code;
       this.newstationery.id = id;
-      this.newstationery.address = address;
-      this.newstationery.city = city;
-      this.newstationery.phone = phone;
+      this.newstationery.prod_name = prod_name;
+      this.newstationery.manufacturer = manufacturer;
+      this.newstationery.pre_gst = pre_gst;
+      this.newstationery.post_gst = post_gst;
+      this.newstationery.unit_price = unit_price;
       this.editForm = true;
     },
     submit() {
-      if (!this.newstationery.name && !this.newstationery.phone) return;
-      if (!this.editForm) {
-        // remove below code before sending to DB
-        const ids = this.stationery.map(item => item.id);
-        const sorted = ids.sort((a, b) => a - b);
-        const highestId = sorted.length - 1;
-        this.newstationery.id = sorted[highestId] + 1;
-        this.$store.commit("schoolList/addSchool", this.newstationery);
-      } else {
-        this.$store.commit("schoolList/editSchool", this.newstationery);
-      }
-      this.editForm = false;
+      if (!this.newstationery.quantity && !this.newstationery.prod_code) return;
+      this.$store.commit("schoolList/editSchool", this.newstationery);
+      this.clearData()
     }
   }
 };
