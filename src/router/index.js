@@ -28,7 +28,7 @@ const routes = [
     name: "cashbill",
     // meta: { title: 'SSS Cash Bill'},
     component: function () {
-      return import("../pages/cashbill.vue");
+      return import("../pages/cashbill/index.vue");
     }
   },
   {

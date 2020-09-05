@@ -27,7 +27,7 @@ export default {
         },
         {
           key: "product_name",
-          label: "Product List"
+          label: "Product Name"
         },
         {
           key: "hsn_code",
