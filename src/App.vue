@@ -23,7 +23,7 @@ export default {
   },
 
   created() {
-    this.$store.dispatch('setAppUrl')
+    this.$store.dispatch('setAppUrl', process.env.VUE_APP_URL)
   },
 
   computed: {

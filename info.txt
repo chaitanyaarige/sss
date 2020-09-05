@@ -3,6 +3,7 @@ https://ecstatic-franklin-77d7cd.netlify.app
 ADD Bootstrap TOAST -- for School/Company Submit - IF ERROR/SUCCESS
 Invert the Chevron - in Nav - like purple - after it is hovered
 
+MInFY - --- CSS and JS
 
 unit testing an app in React
 unit testing in Node js - Express

@@ -23,8 +23,8 @@ export default new Vuex.Store({
     showDeleteConfirm: state => state.showDeleteConfirm
   },
   actions: {
-    setAppUrl() {
-      this.commit('setAppUrl', process.env.APP_URL)
+    setAppUrl({state}, data) {
+      this.commit('setAppUrl', data)
     },
     performRequest ({state, getters}, data) {
       const reqData = {
