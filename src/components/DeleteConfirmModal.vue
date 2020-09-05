@@ -45,6 +45,7 @@ export default {
       this.$emit("confirmDelete", false);
     },
     confirmDelete() {
+      this.$commit('toggleDeleteConfirm', false)
       this.$emit("confirmDelete", true);
     },
   },

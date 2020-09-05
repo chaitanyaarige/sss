@@ -12,15 +12,15 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     appUrl: null,
-    language: 2,
     leftColor: "#a387b5c7",
-    rightColor: "#f58d8d"
+    rightColor: "#f58d8d",
+    showDeleteConfirm: false
   },
   getters: {
     appUrl: state => state.appUrl,
-    language: state => state.language,
     leftColor: state => state.leftColor,
-    rightColor: state => state.rightColor
+    rightColor: state => state.rightColor,
+    showDeleteConfirm: state => state.showDeleteConfirm
   },
   actions: {
     setAppUrl() {
@@ -48,6 +48,9 @@ export default new Vuex.Store({
       } else {
         state.appUrl = 'http://localhost:5200/api/'
       }
+    },
+    toggleDeleteConfirm(state, data) {
+      state.showDeleteConfirm =  data
     }
   },
   modules: {

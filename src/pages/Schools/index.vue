@@ -143,7 +143,6 @@ export default {
     return {
       showForm: false,
       editForm: false,
-      showDeleteConfirm: false,
       editSchool: {},
       newSchool: {
         id: null,
@@ -164,6 +163,7 @@ export default {
     ...mapState({
       leftColor: (state) => state.leftColor,
       rightColor: (state) => state.rightColor,
+      showDeleteConfirm:   (state) => state.showDeleteConfirm,
       schoolList: (state) => state.schoolList.schools,
     }),
     filteredSchoolList() {
@@ -230,22 +230,22 @@ export default {
       this.$store
         .dispatch("schoolList/deleteSchool", this.newSchool)
         .then((response) => {
-          this.showDeleteConfirm = false;
+          this.$commit('toggleDeleteConfirm', false)
           this.newSchool = {}
         })
         .catch((error) => {
-          this.showDeleteConfirm = false;
+          this.$commit('toggleDeleteConfirm', false)
           this.newSchool = {}
           console.log(error);
         });
       }
       else {
         this.newSchool = null
-        this.showDeleteConfirm = false
+          this.$commit('toggleDeleteConfirm', false)
       }
     },
     deleteData(data) {
-      this.showDeleteConfirm = true;
+      this.$commit('toggleDeleteConfirm', true)
       this.newSchool = Object.assign({}, this.newSchool, data);
     },
   },
