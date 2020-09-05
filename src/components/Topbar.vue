@@ -12,10 +12,16 @@
           <div class="Topbar__gst">GST: 36BDEPK3258C1ZT</div>
           <div>Phone: 9666542244</div>
         </div>
-        <div class="Topbar__MainTitle" @click="goToHome" style="cursor: pointer">
+        <div
+          class="Topbar__MainTitle"
+          @click="goToHome"
+          style="cursor: pointer"
+        >
           Sri Srinivasa Stationery And General Stores
         </div>
-        <div class="Topbar__address">Shop No: D5, R.T.C. Complex, Main Road, Zaheerabad</div>
+        <div class="Topbar__address">
+          Shop No: D5, R.T.C. Complex, Main Road, Zaheerabad
+        </div>
       </div>
 
       <!-- Right aligned nav items -->
@@ -46,14 +52,28 @@
 </template>
 
 <script>
+import {
+  BNavbar,
+  BNavbarToggle,
+  BCollapse,
+  BNavbarNav
+} from "bootstrap-vue";
+
 import { mapState, mapGetters } from "vuex";
 export default {
   name: "topbar",
 
+  components: {
+    BNavbar,
+    BNavbarToggle,
+    BCollapse,
+    BNavbarNav
+  },
+
   computed: {
     ...mapState({
-      isLoggedIn: (state) => state.auth.isLoggedIn,
-    }),
+      isLoggedIn: state => state.auth.isLoggedIn
+    })
   },
 
   methods: {
@@ -63,7 +83,7 @@ export default {
     goToHome() {
       this.$router.push({ path: `/` });
     }
-  },
+  }
 };
 </script>
 

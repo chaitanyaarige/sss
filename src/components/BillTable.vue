@@ -11,7 +11,13 @@
 </template>
 
 <script>
+import {BTable}  from "bootstrap-vue";
 export default {
+
+  components: {
+    BTable
+  },
+
   data() {
     return {
       fields: [

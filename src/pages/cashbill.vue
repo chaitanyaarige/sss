@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div>
+      lorem ipsum dolor
+    </div>
+
+
     <div class="Cashbill__main-container">
       <div class="Cashbill_sub-container">
         <div>GST: 36BDEPK3258C1ZT</div>

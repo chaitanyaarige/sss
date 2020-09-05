@@ -116,6 +116,7 @@
 </template>
 
 <script>
+import {BButton} from "bootstrap-vue"
 import { mapState, mapGetters } from "vuex";
 import PublisherTable from "@/components/PublisherTable.vue";
 import DeleteConfirmModal from "@/components/DeleteConfirmModal.vue";
@@ -140,6 +141,7 @@ export default {
 
   components: {
     PublisherTable,
+    BButton,
     DeleteConfirmModal
   },
 

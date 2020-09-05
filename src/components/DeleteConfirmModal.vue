@@ -1,17 +1,27 @@
 <template>
-  <b-modal v-model="show" >
-       <template v-slot:modal-header>
-        <h5>Do You  Want to Delete?</h5>
-        <b-button size="sm" :header-bg-variant="'light'" variant="outline-success" @click="notDelete()">
-          Close
-        </b-button>
+  <b-modal v-model="show">
+    <template v-slot:modal-header>
+      <h5>Do You Want to Delete?</h5>
+      <b-button
+        size="sm"
+        :header-bg-variant="'light'"
+        variant="outline-success"
+        @click="notDelete()"
+      >
+        Close
+      </b-button>
     </template>
 
-
-    <p class="my-2">{{deleteName}}</p>
+    <p class="my-2">{{ deleteName }}</p>
     <template v-slot:modal-footer>
       <div class="col">
-        <b-button variant="outline-danger" size="sm" class="float-right" @click="confirmDelete()">OKAY</b-button>
+        <b-button
+          variant="outline-danger"
+          size="sm"
+          class="float-right"
+          @click="confirmDelete()"
+          >OKAY</b-button
+        >
       </div>
       <div class="col-5"></div>
     </template>
@@ -19,20 +29,25 @@
 </template>
 
 <script>
+import { BButton, BModal } from "bootstrap-vue";
 export default {
   name: "Deleteconfirmmodal",
 
   data() {
-    return{
-      show: false,
-    }
+    return {
+      show: false
+    };
+  },
+  components: {
+    BButton,
+    BModal
   },
 
   props: {
     deleteName: {
       type: String,
       default: null
-    },
+    }
   },
 
   mounted() {
@@ -41,12 +56,12 @@ export default {
 
   methods: {
     notDelete() {
-      this.show = false
+      this.show = false;
       this.$emit("confirmDelete", false);
     },
     confirmDelete() {
       this.$emit("confirmDelete", true);
-    },
-  },
+    }
+  }
 };
 </script>

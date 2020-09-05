@@ -154,6 +154,8 @@
 </template>
 
 <script>
+import { BCard } from 'bootstrap-vue'
+
 export default {
   data() {
     return {
@@ -161,6 +163,10 @@ export default {
       showBuyer: false,
       currentColor: "white",
     };
+  },
+
+  components: {
+    BCard
   },
 
   methods: {

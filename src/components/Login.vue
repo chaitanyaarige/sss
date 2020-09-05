@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import {BButton}  from "bootstrap-vue";
 import { mapState, mapGetters } from "vuex";
 
 export default {
@@ -73,7 +74,10 @@ export default {
       errorLogin: false,
     };
   },
+  components :   {
+    BButton,
 
+  },
   computed: {
     ...mapState({
       leftColor: (state) => state.leftColor,
