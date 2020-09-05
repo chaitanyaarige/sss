@@ -49,7 +49,7 @@
         {{ item.unit_price }}
       </div>
       <div v-if="stockin" class="BuyersTable__table-content BuyersTable__table-content-phone">
-        {{ item.qty }}
+        {{ item.quantity }}
       </div>
       <div
         class="BuyersTable__table-content BuyersTable__table-content-actions"
