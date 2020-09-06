@@ -240,7 +240,7 @@ export default {
         this.$store.dispatch("schoolList/editSchool", this.newSchool);
       }
       this.toggleShowForm();
-      this.editForm = false;
+      this.clearData();
     },
     confirmDelete(data) {
       if (data) {

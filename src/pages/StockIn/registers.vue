@@ -1,10 +1,8 @@
 <template>
   <div class="Schools__main-container">
-    <span style="color: red; font-size: 28px"> NOT FUNCTIONAL Books</span>
+    <span style="color: red; font-size: 28px"> NOT FUNCTIONAL Registers</span>
     <div class="Schools__first-container">
-      <div class="Schools__main-title">
-        {{ editForm ? "Edit" : "Add" }} School Data
-      </div>
+      <div class="Schools__main-title">{{editForm ? "Edit" : "Add"}} School Data</div>
       <div class="Schools__toggle-form" @click="toggleShowForm()">
         <svg
           v-if="!showForm"
@@ -43,15 +41,11 @@
         <b-container>
           <b-row>
             <b-col cols="4">
-              <label style="display: block; text-align: left;" for="text"
-                >dfdfjd</label
-              >
+              <label style="display: block; text-align: left;" for="text">dfdfjd</label>
               <b-form-input placeholder="Enter your name"></b-form-input>
             </b-col>
             <b-col cols="4">
-              <label style="display: block; text-align: left;" for="text"
-                >dfdfjd</label
-              >
+              <label style="display: block; text-align: left;" for="text">dfdfjd</label>
               <b-form-input placeholder="Enter your name"></b-form-input>
             </b-col>
           </b-row>
@@ -59,14 +53,10 @@
       </div>
       <div class="Schools__second-row">
         <div class="Schools__button">
-          <b-button @click="submit()" variant="outline-secondary"
-            >Submit</b-button
-          >
+          <b-button @click="submit()" variant="outline-secondary">Submit</b-button>
         </div>
         <div class="Schools__button">
-          <b-button @click="clearData" squared variant="outline-secondary"
-            >Clear</b-button
-          >
+          <b-button @click="clearData" squared variant="outline-secondary">Clear</b-button>
         </div>
       </div>
     </div>
@@ -96,30 +86,24 @@
 
     <div class="Schools__sub-container-two">
       <div class="Schools__first-row">
-        <!-- <multiselect
+        <multiselect
           v-model="newSchool.name"
           track-by="id"
           :searchable="true"
           :options="schoolList"
           label="name"
-        ></multiselect> -->
+        ></multiselect>
       </div>
     </div>
 
     <div class="Schools__third-container">
       <div class="Schools__main-title">School Data</div>
-      <BuyersTable
-        :dataList="schoolList"
-        @editData="editData"
-        @deleteData="deleteData"
-      />
+      <BuyersTable :dataList="schoolList" @editData="editData" @deleteData="deleteData" />
     </div>
   </div>
 </template>
 
 <script>
-import { BContainer, BCol, BButton, BForm } from "bootstrap-vue";
-
 import { mapState, mapGetters } from "vuex";
 import BuyersTable from "@/components/BuyersTable.vue";
 
@@ -135,25 +119,21 @@ export default {
         name: "",
         address: "",
         city: "",
-        phone: null
-      }
+        phone: null,
+      },
     };
   },
 
   components: {
     BuyersTable,
-    BContainer,
-    BCol,
-    BButton,
-    BForm
   },
 
   computed: {
     ...mapState({
-      leftColor: state => state.leftColor,
-      rightColor: state => state.rightColor,
-      schoolList: state => state.schoolList.schools
-    })
+      leftColor: (state) => state.leftColor,
+      rightColor: (state) => state.rightColor,
+      schoolList: (state) => state.schoolList.schools,
+    }),
   },
 
   methods: {
@@ -184,7 +164,7 @@ export default {
       if (!this.newSchool.name && !this.newSchool.phone) return;
       if (!this.editForm) {
         // remove below code before sending to DB
-        const ids = this.schoolList.map(item => item.id);
+        const ids = this.schoolList.map((item) => item.id);
         const sorted = ids.sort((a, b) => a - b);
         const highestId = sorted.length - 1;
         this.newSchool.id = sorted[highestId] + 1;
@@ -197,8 +177,8 @@ export default {
     },
     deleteData() {
       this.$store.commit("schoolList/deleteSchool", this.newSchool);
-    }
-  }
+    },
+  },
 };
 </script>
 

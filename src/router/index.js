@@ -53,6 +53,13 @@ const routes = [
     }
   },
   {
+    path: "/stockin/registers",
+    name: "registers",
+    component: function () {
+      return import("../pages/StockIn/registers.vue");
+    }
+  },
+  {
     path: "/companies",
     name: "companies",
     component: function () {

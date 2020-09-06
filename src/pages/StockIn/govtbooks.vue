@@ -1,5 +1,6 @@
 <template>
   <div class="Schools__main-container">
+    <span style="color: red; font-size: 28px"> NOT FUNCTIONAL Govt Books</span>
     <div class="Schools__first-container">
       <div class="Schools__main-title">{{editForm ? "Edit" : "Add"}} School Data</div>
       <div class="Schools__toggle-form" @click="toggleShowForm()">
