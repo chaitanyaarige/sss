@@ -1,15 +1,15 @@
 <template>
   <div>
     <div class="Cashbill__select-container">
-      lorem ipsum dolor
+      Select your Products Here:
       <div v-if="stationery" class="Schools__multiselect-label">
         <multiselect
-          v-model="sdfg"
+          v-model="cartProducts"
           track-by="id"
           :searchable="true"
           :options="stationery"
           label="prod_code"
-          multiple="true"
+          :multiple="true"
         ></multiselect>
       </div>
     </div>
@@ -44,7 +44,7 @@
         <div>Billed To: {{ nextYear }}</div>
       </div>
       <div class="Cashbill__subfive">
-        <BillTable />
+        <BillTable :cartProducts="filteredProductsList"/>
       </div>
       <div>total 3000</div>
     </div>
@@ -61,12 +61,32 @@ export default {
   data() {
     return {
       invoice_number: 111,
-      sdfg: null,
+      cartProducts: null,
+      filteredProductsList: [],
+      filteredProducts: {}
     };
   },
 
   components: {
     BillTable
+  },
+  watch: {
+    'cartProducts'(){
+      this.filteredProductsList=[]
+      this.cartProducts.forEach(item => {
+        this.filteredProducts.prod_name=  item.prod_name
+        this.filteredProducts.unit_price=  parseInt(item.unit_price)
+        this.filteredProducts.quantity=  item.quantity
+        this.filteredProducts.cgst_percentage=  parseInt(item.post_gst/2)
+        this.filteredProducts.sgst_percentage=  parseInt(item.post_gst/2)
+        this.filteredProducts.cgst_amount= (this.filteredProducts.cgst_percentage)*(this.filteredProducts.unit_price).toFixed(2)
+        this.filteredProducts.sgst_amount= (this.filteredProducts.cgst_percentage)*(this.filteredProducts.unit_price).toFixed(2)
+        this.filteredProducts.total_gst =this.filteredProducts.cgst_amount+ this.filteredProducts.sgst_amount
+        this.filteredProducts.total_amount = (this.filteredProducts.unit_price*item.quantity)
+        this.filteredProductsList.push(this.filteredProducts)
+        this.filteredProducts = {}
+      })
+    },
   },
 
   computed: {

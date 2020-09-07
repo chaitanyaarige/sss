@@ -1,6 +1,6 @@
 <template>
     <div class="BillTable__main-container">
-        <b-table hover :items="items" :fields="fields"></b-table>
+        <b-table hover :items="cartProducts" :fields="fields"></b-table>
         <div>
             hi
         </div>
@@ -10,6 +10,22 @@
     </div>
 </template>
 
+<style>
+table {
+    counter-reset: rowNumber+1;
+}
+
+table tr:not(:first-child) {
+    counter-increment: rowNumber;
+}
+
+table tr td:first-child::before {
+    content: counter(rowNumber);
+    min-width: 1em;
+    margin-right: 0.5em;
+}
+</style>
+
 <script>
 import {BTable}  from "bootstrap-vue";
 export default {
@@ -17,6 +33,8 @@ export default {
   components: {
     BTable
   },
+
+  props: ["cartProducts"],
 
   data() {
     return {
@@ -26,7 +44,7 @@ export default {
           label: "S. No",
         },
         {
-          key: "product_name",
+          key: "prod_name",
           label: "Product Name"
         },
         {
@@ -34,7 +52,7 @@ export default {
           label: "HSN Code",
         },
         {
-          key: "qty",
+          key: "quantity",
           label: "Quantity",
         },
         {
@@ -43,7 +61,7 @@ export default {
         },
         {
           key: "cgst_percentage",
-          label: "CGST Rate",
+          label: "CGST %",
         },
         {
           key: "cgst_amount",
@@ -51,7 +69,7 @@ export default {
         },
         {
           key: "sgst_percentage",
-          label: "SGST Rate",
+          label: "SGST %",
         },
         {
           key: "sgst_amount",
@@ -61,34 +79,7 @@ export default {
           key: "total_amount",
           label: "Amount",
         },
-      ],
-      items: [
-        {
-          id: 1,
-          product_name: "hgjkl",
-          hsn_code: "jhklj",
-          qty: 3,
-          unit_price: 3.3,
-          cgst_percentage: 3,
-          cgst_amount: 23,
-          sgst_percentage: 3,
-          sgst_amount: 3,
-          total_amount: 100
-        },
-                {
-          id: 2,
-          product_name: "hgjkl",
-          hsn_code: "jhklj",
-          qty: 3,
-          unit_price: 3.3,
-          cgst_percentage: 3,
-          cgst_amount: 23,
-          sgst_percentage: 3,
-          sgst_amount: 3,
-          total_amount: 100
-        },
-
-      ],
+      ]
     };
   },
 };
