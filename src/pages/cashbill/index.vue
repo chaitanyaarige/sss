@@ -2,16 +2,23 @@
   <div>
     <div class="Cashbill__select-container">
       Select your Products Here:
-      <div v-if="stationery" class="Schools__multiselect-label">
+      <div v-if="stationery" class="Cashbill__multiselect-label">
         <multiselect
           v-model="cartProducts"
           track-by="id"
           :searchable="true"
           :options="stationery"
           label="prod_code"
-          :multiple="true"
         ></multiselect>
       </div>
+      <div class="Cashbill__quantity">
+        <input type="number" v-model="neww" :min="1" :max="20" value="1">
+
+      </div>
+    </div>
+
+    <div>
+
     </div>
 
     <div class="Cashbill__main-container">
@@ -44,7 +51,7 @@
         <div>Billed To: {{ nextYear }}</div>
       </div>
       <div class="Cashbill__subfive">
-        <BillTable :cartProducts="filteredProductsList"/>
+        <BillTable :cartProducts="filteredProductsList" />
       </div>
       <div>total 3000</div>
     </div>
@@ -60,6 +67,11 @@ export default {
 
   data() {
     return {
+      neww: null,
+      selectedQuanties: {
+        id: null,
+        quantity:null
+      },
       invoice_number: 111,
       cartProducts: null,
       filteredProductsList: [],
@@ -71,22 +83,30 @@ export default {
     BillTable
   },
   watch: {
-    'cartProducts'(){
-      this.filteredProductsList=[]
+    cartProducts() {
+      this.filteredProductsList = [];
       this.cartProducts.forEach(item => {
-        this.filteredProducts.prod_name=  item.prod_name
-        this.filteredProducts.unit_price=  parseInt(item.unit_price)
-        this.filteredProducts.quantity=  item.quantity
-        this.filteredProducts.cgst_percentage=  parseInt(item.post_gst/2)
-        this.filteredProducts.sgst_percentage=  parseInt(item.post_gst/2)
-        this.filteredProducts.cgst_amount= (this.filteredProducts.cgst_percentage)*(this.filteredProducts.unit_price).toFixed(2)
-        this.filteredProducts.sgst_amount= (this.filteredProducts.cgst_percentage)*(this.filteredProducts.unit_price).toFixed(2)
-        this.filteredProducts.total_gst =this.filteredProducts.cgst_amount+ this.filteredProducts.sgst_amount
-        this.filteredProducts.total_amount = (this.filteredProducts.unit_price*item.quantity)
-        this.filteredProductsList.push(this.filteredProducts)
-        this.filteredProducts = {}
-      })
-    },
+        this.filteredProducts.prod_name = item.prod_name;
+        this.filteredProducts.unit_price = parseInt(item.unit_price);
+        this.filteredProducts.cgst_percentage = parseInt(item.post_gst / 2);
+        this.filteredProducts.sgst_percentage = parseInt(item.post_gst / 2);
+        this.filteredProducts.cgst_amount =
+          this.filteredProducts.cgst_percentage *
+          this.filteredProducts.unit_price.toFixed(2);
+        this.filteredProducts.sgst_amount =
+          this.filteredProducts.cgst_percentage *
+          this.filteredProducts.unit_price.toFixed(2);
+        this.filteredProducts.total_gst =
+          this.filteredProducts.cgst_amount + this.filteredProducts.sgst_amount;
+
+        // this.filteredProducts.quantity = item.id ===
+
+        this.filteredProducts.total_amount =
+          this.filteredProducts.unit_price * this.filteredProducts.quantity;
+        this.filteredProductsList.push(this.filteredProducts);
+        this.filteredProducts = {};
+      });
+    }
   },
 
   computed: {
@@ -107,7 +127,7 @@ export default {
             .toString()
             .substr(2, 2)
         ) + 1
-      )
+      );
     }
   },
 
@@ -124,5 +144,5 @@ export default {
 </script>
 
 <style lang="scss">
-  @import "index";
+@import "index";
 </style>
