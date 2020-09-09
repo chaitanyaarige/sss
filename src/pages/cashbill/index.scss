@@ -7,8 +7,16 @@
   }
 
   &__select-container {
-    width: 500px;
+    display: flex;
+    justify-content: center;
+    min-height: 200px;
+    padding-top: 50px;
     margin: auto;
+  }
+
+  &__multiselect-label {
+    margin-right: 40px;
+    width: 30%;
   }
 
   &__sub-container {
