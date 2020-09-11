@@ -1,66 +1,58 @@
 <template>
   <div>
     <div class="Cashbill__select-container">
-      Select your Products Here:
-      <div v-if="stationery" class="Cashbill__multiselect-label">
+      <div class="text-left">
+        Select your Products Here:
+        <svg
+          width="1em"
+          height="1em"
+          viewBox="0 0 16 16"
+          class="Cashbill__arrow-down"
+          fill="red"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"
+          />
+        </svg>
+      </div>
+      <div v-if="stationery" class="Cashbill__multiselect-label mt-3">
         <multiselect
           v-model="cartProducts"
           track-by="id"
+          :multiple="true"
           :searchable="true"
           :options="stationery"
           label="prod_code"
         ></multiselect>
       </div>
-      <div class="Cashbill__quantity">
-        <input type="number" v-model="neww" :min="1" :max="20" value="1">
-
-      </div>
     </div>
 
-    <div>
-
+    <div v-if="cartProducts" class="Cashbill__productinfo-header">
+      <div class="Cashbill__productinfo-names">Product Name</div>
+      <div class="Cashbill__productinfo-names">Product Code</div>
+      <div class="Cashbill__productinfo-names">Quantity</div>
+    </div>
+    <div v-for="(cartItem, index)  in cartProducts" :key="index">
+      <ProductInformation :cartItem="cartItem" @changeamount="changeamount" />
     </div>
 
-    <div class="Cashbill__main-container">
-      <div class="Cashbill_sub-container">
-        <div>GST: 36BDEPK3258C1ZT</div>
-        <div>Phone: 9666542244</div>
-      </div>
-      <div class="Cashbill__subtwo" style="border: 1px solid grey">
-        <div>TAX INVOICE</div>
-        <div>Sri Srinivasa Stationery And General Stores</div>
-        <div>Shop No: D5, R.T.C. Complex, Main Road, Zaheerabad</div>
-      </div>
-      <div style="display: flex" class="Cashbill__subthree">
-        <div style="border: 1px solid grey">
-          <div>
-            Invoice Number: SSS/CASH/{{ invoice_number }}/{{ currentYear }}-{{
-              nextYear
-            }}
-          </div>
-          <div>Date of Invoice: {{ currentTime }}</div>
-        </div>
-        <div>
-          <div>Place of Supply: Telangana (36)</div>
-        </div>
-      </div>
-      <div
-        class="Cashbill__subfour"
-        style="display: flex; border: 1px solid grey"
-      >
-        <div>Billed To: {{ nextYear }}</div>
-      </div>
-      <div class="Cashbill__subfive">
-        <BillTable :cartProducts="filteredProductsList" />
-      </div>
-      <div>total 3000</div>
+    <div v-if="cartProducts" class="Cashbill__button">
+      <b-button @click="submit()" :variant="submitClicked">Submit</b-button>
+    </div>
+
+    <div v-if="showInvoice" class="Cashbill__invoice-container">
+      <Invoice />
     </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from "vuex";
-import BillTable from "@/components/BillTable.vue";
+import Invoice from "@/components/Cashbill/Invoice.vue";
+import ProductInformation from "@/components/ProductInformation";
+import { BButton } from "bootstrap-vue";
 
 export default {
   name: "cashbill",
@@ -70,22 +62,26 @@ export default {
       neww: null,
       selectedQuanties: {
         id: null,
-        quantity:null
+        quantity: null,
       },
       invoice_number: 111,
       cartProducts: null,
       filteredProductsList: [],
-      filteredProducts: {}
+      filteredProducts: {},
+      showInvoice: false,
     };
   },
 
   components: {
-    BillTable
+    Invoice,
+    ProductInformation,
+    BButton,
   },
+
   watch: {
     cartProducts() {
       this.filteredProductsList = [];
-      this.cartProducts.forEach(item => {
+      this.cartProducts.forEach((item) => {
         this.filteredProducts.prod_name = item.prod_name;
         this.filteredProducts.unit_price = parseInt(item.unit_price);
         this.filteredProducts.cgst_percentage = parseInt(item.post_gst / 2);
@@ -106,29 +102,16 @@ export default {
         this.filteredProductsList.push(this.filteredProducts);
         this.filteredProducts = {};
       });
-    }
+    },
   },
 
   computed: {
     ...mapState({
-      stationery: state => state.stationery.stationery
+      stationery: (state) => state.stationery.stationery,
     }),
-    currentTime() {
-      return new Date().toDateString();
+    submitClicked() {
+      return this.showInvoice ? "outline-secondary" : "secondary";
     },
-    currentYear() {
-      return new Date().getFullYear();
-    },
-    nextYear() {
-      return (
-        parseInt(
-          new Date()
-            .getFullYear()
-            .toString()
-            .substr(2, 2)
-        ) + 1
-      );
-    }
   },
 
   created() {
@@ -138,8 +121,16 @@ export default {
   methods: {
     getAllStationery() {
       this.$store.dispatch("stationery/getStationery");
-    }
-  }
+    },
+    changeamount(data, index) {
+      this.cartProducts.amount = data;
+    },
+    submit() {
+      window.print()
+      this.showInvoice = true;
+      this.cartProducts.amount = null;
+    },
+  },
 };
 </script>
 

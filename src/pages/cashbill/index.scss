@@ -1,17 +1,47 @@
 .Cashbill {
-  &__main-container {
-    width: 1050px;
-    margin: auto;
-    min-height: 400px;
-    border: 1px solid red;
-  }
-
   &__select-container {
-    width: 500px;
+    width: 700px;
     margin: auto;
+    padding: 50px;
   }
 
-  &__sub-container {
+  &__button {
     display: flex;
+    justify-content: flex-end;
+    max-width: 70%;
+  }
+
+  @keyframes updown {
+    0% {
+      transform: translateY(-50%);
+    }
+    50% {
+      transform: translateY(50%);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+
+  &__arrow-down {
+    animation: updown 3s ease infinite;
+  }
+
+  &__productinfo-header {
+    max-width: 600px;
+    text-align: left;
+    display: flex;
+    margin-left: 100px;
+    display: flex;
+    margin-bottom: 10px;
+    border-bottom: 1px solid lightslategrey;
+  }
+
+  &__productinfo-names {
+    min-width: 200px;
+  }
+
+  &__invoice-container {
+    margin-top: 60px;
   }
 }
