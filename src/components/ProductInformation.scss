@@ -1,0 +1,21 @@
+.ProductInformation {
+  &__main-container{
+    display: flex;
+    margin: 10px;
+  }
+
+  &__name {
+    max-width: 600px;
+    text-align: left;
+    padding-left: 100px;
+    display: flex;
+  }
+
+  &__names {
+    min-width: 200px;
+  }
+
+  &__error{
+    border-color:red;
+  }
+}

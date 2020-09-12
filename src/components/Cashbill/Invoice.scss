@@ -1,0 +1,12 @@
+.Invoice {
+  &__sub-container {
+    display: flex;
+  }
+
+  &__main-container {
+    width: 1050px;
+    margin: auto;
+    min-height: 400px;
+    border: 1px solid red;
+  }
+}

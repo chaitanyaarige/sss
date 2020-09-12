@@ -1,5 +1,5 @@
 <template>
-  <div class="Navbar__shorts">
+  <div class="Navbar__shorts d-print-none ">
     <div @click.stop="routemeto('')" class="Navbar__smallBoxes">
       <svg
         width="25px"
