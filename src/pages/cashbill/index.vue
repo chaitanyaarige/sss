@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="Cashbill__select-container">
+    <div class="Cashbill__select-container d-print-none ">
       <div class="text-left">
         Select your Products Here:
         <svg
@@ -43,7 +43,7 @@
     </div>
 
     <div v-if="showInvoice" class="Cashbill__invoice-container">
-      <Invoice />
+      <Invoice :invoice_number="invoice_number"/>
     </div>
   </div>
 </template>
@@ -126,9 +126,9 @@ export default {
       this.cartProducts.amount = data;
     },
     submit() {
-      window.print()
       this.showInvoice = true;
-      this.cartProducts.amount = null;
+      // document.title = "My new title";
+      // window.print()
     },
   },
 };

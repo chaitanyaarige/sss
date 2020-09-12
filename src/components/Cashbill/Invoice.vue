@@ -43,6 +43,8 @@ export default {
     BillTable
   },
 
+  props:['invoice_number'],
+
   computed: {
     currentTime() {
       return new Date().toDateString();
