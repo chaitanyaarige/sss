@@ -32,6 +32,7 @@
     <div v-if="cartProducts" class="Cashbill__productinfo-header">
       <div class="Cashbill__productinfo-names">Product Name</div>
       <div class="Cashbill__productinfo-names">Product Code</div>
+      <div class="Cashbill__productinfo-names">Max Available Quantity</div>
       <div class="Cashbill__productinfo-names">Quantity</div>
     </div>
     <div v-for="(cartItem, index)  in cartProducts" :key="index">
@@ -59,11 +60,6 @@ export default {
 
   data() {
     return {
-      neww: null,
-      selectedQuanties: {
-        id: null,
-        quantity: null,
-      },
       invoice_number: 111,
       cartProducts: null,
       filteredProductsList: [],
@@ -95,7 +91,7 @@ export default {
         this.filteredProducts.total_gst =
           this.filteredProducts.cgst_amount + this.filteredProducts.sgst_amount;
 
-        // this.filteredProducts.quantity = item.id ===
+        this.filteredProducts.quantity =
 
         this.filteredProducts.total_amount =
           this.filteredProducts.unit_price * this.filteredProducts.quantity;
@@ -123,7 +119,9 @@ export default {
       this.$store.dispatch("stationery/getStationery");
     },
     changeamount(data, index) {
-      this.cartProducts.amount = data;
+      this.cartProducts.forEach(item =>{
+        if(item.id === index) this.item.purchased = data;
+      })
     },
     submit() {
       this.showInvoice = true;

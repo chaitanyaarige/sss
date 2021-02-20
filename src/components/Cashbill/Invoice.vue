@@ -29,7 +29,7 @@
       <div>Billed To: {{ nextYear }}</div>
     </div>
     <div class="Invoice__subfive">
-      <BillTable :cartProducts="filteredProductsList" />
+      <!-- <BillTable :cartProducts="filteredProductsList" /> -->
     </div>
     <div>total 3000</div>
   </div>
