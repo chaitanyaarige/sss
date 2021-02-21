@@ -1,11 +1,11 @@
 <template>
-  <div class="Schools__main-container">
-    <div class="Schools__second-container">
-      <div class="Schools__main-title">Edit Stock Quantity</div>
+  <div class="Stock_in_stationery__main-container">
+    <div class="Stock_in_stationery__second-container">
+      <div class="Stock_in_stationery__main-title">Edit Stock Quantity</div>
     </div>
 
-    <div class="Schools__sub-container-two">
-      <div v-if="stationery" class="Schools__multiselect-label">
+    <div class="Stock_in_stationery__sub-container-two">
+      <div v-if="stationery" class="Stock_in_stationery__multiselect-label">
         <multiselect
           v-model="newstationery"
           track-by="id"
@@ -14,26 +14,26 @@
           label="prod_code"
         ></multiselect>
       </div>
-      <div class="Schools__first-row">
-        <div v-if='newstationery' class="Schools__input-fields">
+      <div class="Stock_in_stationery__first-row">
+        <div v-if='newstationery' class="Stock_in_stationery__input-fields">
           <label for="address">Quantity</label>
           <input
-            class="Schools__input-fields-deep"
+            class="Stock_in_stationery__input-fields-deep"
             type="text"
             name="address"
             v-model="newstationery.quantity"
           />
         </div>
       </div>
-      <div class="Schools__first-row">
-        <div class="Schools__multiselect-label">
-          <div @click="submit" class="Schools__edit-button">Save</div>
+      <div class="Stock_in_stationery__first-row">
+        <div class="Stock_in_stationery__multiselect-label">
+          <div @click="submit" class="Stock_in_stationery__edit-button">Save</div>
         </div>
       </div>
     </div>
 
-    <div class="Schools__third-container pt-4">
-      <div class="Schools__main-title">Stationery Data</div>
+    <div class="Stock_in_stationery__third-container pt-4">
+      <div class="Stock_in_stationery__main-title">Stationery Data</div>
       <PublisherTable
       :stockin="true"
       :dataList="stationery" @editData="editData" />
@@ -51,8 +51,16 @@ export default {
   data() {
     return {
       editForm: false,
-      newstationery: {},
-    };
+      newstationery: {
+        prod_code: "",
+        prod_name: "",
+        manufacturer: "",
+        pre_gst: null,
+        quantity: 0,
+        post_gst: null,
+        unit_price: null,
+      },
+    }
   },
 
   components: {
@@ -98,5 +106,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "stationery";
+@import "Stock_in_stationery";
 </style>

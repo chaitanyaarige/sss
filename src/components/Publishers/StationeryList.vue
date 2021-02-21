@@ -133,6 +133,7 @@ export default {
         prod_name: "",
         manufacturer: "",
         pre_gst: null,
+        quantity: 0,
         post_gst: null,
         unit_price: null,
       },

@@ -1,4 +1,4 @@
-.BuyersTable {
+.PublisherTable {
   &__main-container {
     display: block;
   }
@@ -53,8 +53,8 @@
     &-address {
       width: 210px;
     }
-    &-city {
-      width: 50px;
+    &-gst {
+      width: 80px;
     }
     &-phone {
       width: 85px;
@@ -81,8 +81,8 @@
     &-address {
       width: 210px;
     }
-    &-city {
-      width: 50px;
+    &-gst {
+      width: 80px;
     }
     &-phone {
       width: 85px;

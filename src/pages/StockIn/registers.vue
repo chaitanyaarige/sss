@@ -183,5 +183,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import "stationery";
+@import "Stock_in_stationery";
 </style>
