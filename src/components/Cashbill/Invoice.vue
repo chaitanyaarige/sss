@@ -1,16 +1,18 @@
 <template>
   <div class="Invoice__main-container">
-    <div class="Invoice_sub-container">
+    <div class="Invoice__sub-container">
       <div>GST: 36BDEPK3258C1ZT</div>
       <div>Phone: 9666542244</div>
     </div>
-    <div class="Invoice__subtwo" style="border: 1px solid grey">
-      <div>TAX INVOICE</div>
-      <div>Sri Srinivasa Stationery And General Stores</div>
+    <div class="Invoice__sub-two">
+      <div style="text-decoration: underline;">TAX INVOICE</div>
+      <div class="Invoice__Main-heading">
+        Sri Srinivasa Stationery And General Stores
+      </div>
       <div>Shop No: D5, R.T.C. Complex, Main Road, Zaheerabad</div>
     </div>
-    <div style="display: flex" class="Invoice__subthree">
-      <div style="border: 1px solid grey">
+    <div class="Invoice__sub-three">
+      <div class="Invoice__invoice-subContainer">
         <div>
           Invoice Number: SSS/CASH/{{ invoice_number }}/{{ currentYear }}-{{
             nextYear
@@ -18,18 +20,25 @@
         </div>
         <div>Date of Invoice: {{ currentTime }}</div>
       </div>
-      <div>
+      <div class="Invoice__place-of-supply">
         <div>Place of Supply: Telangana (36)</div>
       </div>
     </div>
-    <div
-      class="Invoice__subfour"
-      style="display: flex; border: 1px solid grey"
-    >
-      <div>Billed To: {{ nextYear }}</div>
+
+    <div class="Invoice__sub-four">
+      <div class="Invoice__invoice-subContainer">
+        <div> <strong> Billed To:</strong> <br> SRI SRINIVASA Stationery, ZHB</div>
+      </div>
+      <div class="Invoice__place-of-supply">
+        <div>
+          <strong>Shipped To: </strong> <br />
+          SRI SRINIVASA Stationery, ZHB
+        </div>
+      </div>
     </div>
+
     <div class="Invoice__subfive">
-      <!-- <BillTable :cartProducts="filteredProductsList" /> -->
+      <BillTable :filteredProductsList="filteredProductsList" />
     </div>
     <div>total 3000</div>
   </div>
@@ -43,7 +52,7 @@ export default {
     BillTable
   },
 
-  props:['invoice_number'],
+  props: ["invoice_number", "filteredProductsList"],
 
   computed: {
     currentTime() {
@@ -67,5 +76,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  @import "Invoice";
+@import "Invoice";
 </style>

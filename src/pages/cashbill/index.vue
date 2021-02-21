@@ -35,7 +35,7 @@
       <div class="Cashbill__productinfo-names">Max Available Quantity</div>
       <div class="Cashbill__productinfo-names">Quantity</div>
     </div>
-    <div v-for="(cartItem, index)  in cartProducts" :key="index">
+    <div v-for="(cartItem, index) in cartProducts" :key="index">
       <ProductInformation :cartItem="cartItem" @changeamount="changeamount" />
     </div>
 
@@ -44,7 +44,10 @@
     </div>
 
     <div v-if="showInvoice" class="Cashbill__invoice-container">
-      <Invoice :invoice_number="invoice_number"/>
+      <Invoice
+        :invoice_number="invoice_number"
+        :filteredProductsList="filteredProductsList"
+      />
     </div>
   </div>
 </template>
@@ -64,50 +67,23 @@ export default {
       cartProducts: null,
       filteredProductsList: [],
       filteredProducts: {},
-      showInvoice: false,
+      showInvoice: false
     };
   },
 
   components: {
     Invoice,
     ProductInformation,
-    BButton,
-  },
-
-  watch: {
-    cartProducts() {
-      this.filteredProductsList = [];
-      this.cartProducts.forEach((item) => {
-        this.filteredProducts.prod_name = item.prod_name;
-        this.filteredProducts.unit_price = parseInt(item.unit_price);
-        this.filteredProducts.cgst_percentage = parseInt(item.post_gst / 2);
-        this.filteredProducts.sgst_percentage = parseInt(item.post_gst / 2);
-        this.filteredProducts.cgst_amount =
-          this.filteredProducts.cgst_percentage *
-          this.filteredProducts.unit_price.toFixed(2);
-        this.filteredProducts.sgst_amount =
-          this.filteredProducts.cgst_percentage *
-          this.filteredProducts.unit_price.toFixed(2);
-        this.filteredProducts.total_gst =
-          this.filteredProducts.cgst_amount + this.filteredProducts.sgst_amount;
-
-        this.filteredProducts.quantity =
-
-        this.filteredProducts.total_amount =
-          this.filteredProducts.unit_price * this.filteredProducts.quantity;
-        this.filteredProductsList.push(this.filteredProducts);
-        this.filteredProducts = {};
-      });
-    },
+    BButton
   },
 
   computed: {
     ...mapState({
-      stationery: (state) => state.stationery.stationery,
+      stationery: state => state.stationery.stationery
     }),
     submitClicked() {
       return this.showInvoice ? "outline-secondary" : "secondary";
-    },
+    }
   },
 
   created() {
@@ -119,16 +95,33 @@ export default {
       this.$store.dispatch("stationery/getStationery");
     },
     changeamount(data, index) {
-      this.cartProducts.forEach(item =>{
-        if(item.id === index) this.item.purchased = data;
-      })
+      let modify = this.cartProducts.find(item => item.id === index);
+      let productAdded = this.filteredProductsList.find(item => item.prod_code === modify.prod_code)
+      if(!productAdded) {
+        this.filteredProducts.prod_name = modify.prod_name;
+        this.filteredProducts.prod_code = modify.prod_code;
+        this.filteredProducts.unit_price = parseInt(modify.unit_price);
+        this.filteredProducts.cgst_percentage = parseInt(modify.post_gst / 2);
+        this.filteredProducts.sgst_percentage = parseInt(modify.post_gst / 2);
+        this.filteredProducts.cgst_amount = this.filteredProducts.cgst_percentage * this.filteredProducts.unit_price.toFixed(2);
+        this.filteredProducts.sgst_amount = this.filteredProducts.cgst_percentage * this.filteredProducts.unit_price.toFixed(2);
+        this.filteredProducts.total_gst =   this.filteredProducts.cgst_amount + this.filteredProducts.sgst_amount;
+        this.filteredProducts.quantity = data;
+        this.filteredProducts.total_amount = this.filteredProducts.unit_price * data;
+        this.filteredProductsList.push(this.filteredProducts);
+      } else {
+        this.filteredProductsList.forEach(item => {
+          if(item.prod_code === productAdded.prod_code) item.quantity = data
+        }) ;
+      }
+      this.filteredProducts = {};
     },
     submit() {
       this.showInvoice = true;
       // document.title = "My new title";
       // window.print()
-    },
-  },
+    }
+  }
 };
 </script>
 

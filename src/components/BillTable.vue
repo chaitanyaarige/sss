@@ -1,6 +1,6 @@
 <template>
     <div class="BillTable__main-container">
-        <b-table hover :items="cartProducts" :fields="fields"></b-table>
+        <b-table hover :items="filteredProductsList" :fields="fields"></b-table>
         <div>
             hi
         </div>
@@ -34,7 +34,7 @@ export default {
     BTable
   },
 
-  props: ["cartProducts"],
+  props: ["filteredProductsList"],
 
   data() {
     return {
