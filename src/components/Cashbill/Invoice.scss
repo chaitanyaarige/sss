@@ -32,6 +32,11 @@
     justify-content: space-between;
   }
 
+  &__sub-five {
+    display: flex;
+    justify-content: space-between;
+  }
+
   &__invoice-subContainer {
     width: 50%;
     border-right: 1px grey solid;

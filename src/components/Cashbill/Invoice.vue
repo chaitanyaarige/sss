@@ -37,10 +37,21 @@
       </div>
     </div>
 
-    <div class="Invoice__subfive">
+    <div class="Invoice__sub-five">
       <BillTable :filteredProductsList="filteredProductsList" />
     </div>
-    <div>total 3000</div>
+
+    <div class="Invoice__sub-six">
+      <div class="Invoice__invoice-subContainer">
+        <div> <strong> Total Quantity:</strong> {{totalQty}} <br> </div>
+      </div>
+      <div class="Invoice__place-of-supply">
+        <div>
+          <strong>Total Amount: </strong> {{totalAmt}}
+        </div>
+      </div>
+    </div>
+
   </div>
 </template>
 
@@ -60,6 +71,12 @@ export default {
     },
     currentYear() {
       return new Date().getFullYear();
+    },
+    totalQty() {
+      return this.filteredProductsList.reduce((prev,next) => prev + next.quantity,0);
+    },
+    totalAmt() {
+      return this.filteredProductsList.reduce((prev,next) => prev + next.total_amount,0);
     },
     nextYear() {
       return (

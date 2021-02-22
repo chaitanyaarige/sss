@@ -29,17 +29,21 @@
       </div>
     </div>
 
-    <div v-if="cartProducts" class="Cashbill__productinfo-header">
+    <div v-if="cartProducts" class="d-print-none Cashbill__productinfo-header">
       <div class="Cashbill__productinfo-names">Product Name</div>
       <div class="Cashbill__productinfo-names">Product Code</div>
       <div class="Cashbill__productinfo-names">Max Available Quantity</div>
       <div class="Cashbill__productinfo-names">Quantity</div>
     </div>
-    <div v-for="(cartItem, index) in cartProducts" :key="index">
+    <div class="d-print-none" v-for="(cartItem, index) in cartProducts" :key="index">
       <ProductInformation :cartItem="cartItem" @changeamount="changeamount" />
     </div>
 
-    <div v-if="cartProducts" class="Cashbill__button">
+    <div>
+      Select Buyer
+    </div>
+
+    <div v-if="cartProducts" class="Cashbill__button d-print-none">
       <b-button @click="submit()" :variant="submitClicked">Submit</b-button>
     </div>
 
@@ -48,6 +52,9 @@
         :invoice_number="invoice_number"
         :filteredProductsList="filteredProductsList"
       />
+      <div class="d-print-none" @click="print">
+        Finalize and Print - This will reduce Stock Inventory
+      </div>
     </div>
   </div>
 </template>
@@ -106,20 +113,23 @@ export default {
         this.filteredProducts.cgst_amount = this.filteredProducts.cgst_percentage * this.filteredProducts.unit_price.toFixed(2);
         this.filteredProducts.sgst_amount = this.filteredProducts.cgst_percentage * this.filteredProducts.unit_price.toFixed(2);
         this.filteredProducts.total_gst =   this.filteredProducts.cgst_amount + this.filteredProducts.sgst_amount;
-        this.filteredProducts.quantity = data;
-        this.filteredProducts.total_amount = this.filteredProducts.unit_price * data;
+        this.filteredProducts.quantity = parseInt(data);
+        this.filteredProducts.total_amount = this.filteredProducts.unit_price * parseInt(data);;
         this.filteredProductsList.push(this.filteredProducts);
       } else {
+        this.showInvoice = false
         this.filteredProductsList.forEach(item => {
-          if(item.prod_code === productAdded.prod_code) item.quantity = data
+          if(item.prod_code === productAdded.prod_code) item.quantity = parseInt(data);
         }) ;
       }
       this.filteredProducts = {};
     },
     submit() {
       this.showInvoice = true;
-      // document.title = "My new title";
-      // window.print()
+    },
+    print() {
+      document.title = "My new title";
+      window.print()
     }
   }
 };

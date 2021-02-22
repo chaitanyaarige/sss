@@ -1,12 +1,6 @@
 <template>
     <div class="BillTable__main-container">
         <b-table hover :items="filteredProductsList" :fields="fields"></b-table>
-        <div>
-            hi
-        </div>
-        <div>
-            no hi
-        </div>
     </div>
 </template>
 
