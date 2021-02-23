@@ -1,14 +1,17 @@
 .Cashbill {
   &__select-container {
     width: 700px;
-    margin: auto;
-    padding: 50px;
-  }
+    padding: 50px 100px;  }
 
   &__button {
     display: flex;
     justify-content: flex-end;
     max-width: 70%;
+  }
+
+  &__radio-labels {
+    display: flex;
+    justify-content: space-between;
   }
 
   @keyframes updown {

@@ -14,7 +14,7 @@
             :max="cartItem.quantity"
             value="1"
             style="width:100px;"
-            :class="{'ProductInformation__error': neww > cartItem.quantity}"
+            :class="{'ProductInformation__error': neww === null || neww > cartItem.quantity}"
           />
         </div>
       </div>

@@ -27,6 +27,32 @@
           label="prod_code"
         ></multiselect>
       </div>
+
+      <div class="text-left mt-3">
+        Customer Type:
+      </div>
+      <div v-if="stationery" class="Cashbill__radio-labels mt-3">
+        <input v-model="customerType" type="radio" id="general" value="general">
+        <label for="general">general</label><br>
+        <input v-model="customerType" type="radio" id="school"  value="school">
+        <label for="school">school</label><br>
+        <input v-model="customerType" type="radio" id="company" value="company">
+        <label for="company">company</label>
+      </div>
+
+      <div v-if="customerType != 'general'" class="text-left mt-3">
+        To BILL:
+      </div>
+      <div v-if="customerType != 'general'" class="Cashbill__multiselect-label mt-3">
+        <multiselect
+          v-model="selectedCustomer"
+          track-by="id"
+          :multiple="false"
+          :searchable="true"
+          :options="filteredCustomers"
+          label="name"
+        ></multiselect>
+      </div>
     </div>
 
     <div v-if="cartProducts" class="d-print-none Cashbill__productinfo-header">
@@ -37,10 +63,6 @@
     </div>
     <div class="d-print-none" v-for="(cartItem, index) in cartProducts" :key="index">
       <ProductInformation :cartItem="cartItem" @changeamount="changeamount" />
-    </div>
-
-    <div>
-      Select Buyer
     </div>
 
     <div v-if="cartProducts" class="Cashbill__button d-print-none">
@@ -73,6 +95,8 @@ export default {
       invoice_number: 111,
       cartProducts: null,
       filteredProductsList: [],
+      customerType: 'general',
+      selectedCustomer: {},
       filteredProducts: {},
       showInvoice: false
     };
@@ -86,15 +110,24 @@ export default {
 
   computed: {
     ...mapState({
-      stationery: state => state.stationery.stationery
+      stationery: state => state.stationery.stationery,
+      schools: state => state.schoolList.schools,
+      companies: state => state.companyList.companies
     }),
     submitClicked() {
       return this.showInvoice ? "outline-secondary" : "secondary";
+    },
+    filteredCustomers() {
+      if(this.customerType === 'company') return this.companies
+      if(this.customerType === 'school') return this.schools
+      return null
     }
   },
 
   created() {
     this.getAllStationery();
+    this.$store.dispatch("schoolList/getSchools");
+    this.$store.dispatch("companyList/getCompanies");
   },
 
   methods: {
